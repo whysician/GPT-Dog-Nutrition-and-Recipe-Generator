@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		AE2EBA772D4AC9D00059EBC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE2EBA5C2D4AC9CE0059EBC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE2EBA632D4AC9CE0059EBC3;
+			remoteInfo = "GPT-Dog-Nutrition-and-Recipe-Generator";
+		};
+		AE2EBA812D4AC9D00059EBC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE2EBA5C2D4AC9CE0059EBC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE2EBA632D4AC9CE0059EBC3;
+			remoteInfo = "GPT-Dog-Nutrition-and-Recipe-Generator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			sourceTree = "<group>";
+		};
+		AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+			sourceTree = "<group>";
+		};
+		AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE2EBA612D4AC9CE0059EBC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA732D4AC9D00059EBC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA7D2D4AC9D00059EBC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE2EBA5B2D4AC9CE0059EBC3 = {
+			isa = PBXGroup;
+			children = (
+				AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
+				AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
+				AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+				AE2EBA652D4AC9CE0059EBC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE2EBA652D4AC9CE0059EBC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */,
+				AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */,
+				AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-Generator" */;
+			buildPhases = (
+				AE2EBA602D4AC9CE0059EBC3 /* Sources */,
+				AE2EBA612D4AC9CE0059EBC3 /* Frameworks */,
+				AE2EBA622D4AC9CE0059EBC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
+			);
+			name = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			packageProductDependencies = (
+			);
+			productName = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			productReference = AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AE2EBA752D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorTests" */;
+			buildPhases = (
+				AE2EBA722D4AC9D00059EBC3 /* Sources */,
+				AE2EBA732D4AC9D00059EBC3 /* Frameworks */,
+				AE2EBA742D4AC9D00059EBC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE2EBA782D4AC9D00059EBC3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
+			);
+			name = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+			packageProductDependencies = (
+			);
+			productName = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+			productReference = AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AE2EBA7F2D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests" */;
+			buildPhases = (
+				AE2EBA7C2D4AC9D00059EBC3 /* Sources */,
+				AE2EBA7D2D4AC9D00059EBC3 /* Frameworks */,
+				AE2EBA7E2D4AC9D00059EBC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE2EBA822D4AC9D00059EBC3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+			);
+			name = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+			packageProductDependencies = (
+			);
+			productName = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+			productReference = AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE2EBA5C2D4AC9CE0059EBC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					AE2EBA632D4AC9CE0059EBC3 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					AE2EBA752D4AC9D00059EBC3 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = AE2EBA632D4AC9CE0059EBC3;
+					};
+					AE2EBA7F2D4AC9D00059EBC3 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = AE2EBA632D4AC9CE0059EBC3;
+					};
+				};
+			};
+			buildConfigurationList = AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "GPT-Dog-Nutrition-and-Recipe-Generator" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE2EBA5B2D4AC9CE0059EBC3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AE2EBA652D4AC9CE0059EBC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
+				AE2EBA752D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
+				AE2EBA7F2D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE2EBA622D4AC9CE0059EBC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA742D4AC9D00059EBC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA7E2D4AC9D00059EBC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE2EBA602D4AC9CE0059EBC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA722D4AC9D00059EBC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE2EBA7C2D4AC9D00059EBC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AE2EBA782D4AC9D00059EBC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+			targetProxy = AE2EBA772D4AC9D00059EBC3 /* PBXContainerItemProxy */;
+		};
+		AE2EBA822D4AC9D00059EBC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+			targetProxy = AE2EBA812D4AC9D00059EBC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AE2EBA882D4AC9D00059EBC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AE2EBA892D4AC9D00059EBC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE2EBA8B2D4AC9D00059EBC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GPT-Dog-Nutrition-and-Recipe-Generator/Preview Content\"";
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE2EBA8C2D4AC9D00059EBC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GPT-Dog-Nutrition-and-Recipe-Generator/Preview Content\"";
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AE2EBA8E2D4AC9D00059EBC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPT-Dog-Nutrition-and-Recipe-Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GPT-Dog-Nutrition-and-Recipe-Generator";
+			};
+			name = Debug;
+		};
+		AE2EBA8F2D4AC9D00059EBC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPT-Dog-Nutrition-and-Recipe-Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GPT-Dog-Nutrition-and-Recipe-Generator";
+			};
+			name = Release;
+		};
+		AE2EBA912D4AC9D00059EBC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			};
+			name = Debug;
+		};
+		AE2EBA922D4AC9D00059EBC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93CD8AWYQ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.SniffServe.GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "GPT-Dog-Nutrition-and-Recipe-Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2EBA882D4AC9D00059EBC3 /* Debug */,
+				AE2EBA892D4AC9D00059EBC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2EBA8B2D4AC9D00059EBC3 /* Debug */,
+				AE2EBA8C2D4AC9D00059EBC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2EBA8E2D4AC9D00059EBC3 /* Debug */,
+				AE2EBA8F2D4AC9D00059EBC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE2EBA912D4AC9D00059EBC3 /* Debug */,
+				AE2EBA922D4AC9D00059EBC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE2EBA5C2D4AC9CE0059EBC3 /* Project object */;
+}
