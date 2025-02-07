@@ -1,7 +1,7 @@
-# GPT Dog Nutrition and Recipe Generator
+# GPT Dog Nutrition and Recipe Generator (SniffServe)
 
 ## Overview
-The **GPT Dog Nutrition and Recipe Generator** is a mobile app that offers personalized dietary recommendations for pet dogs. Developed with Swift, SwiftUI, and powered by the OpenAI ChatGPT API, the app enables dog owners to create tailored, nutritious meal plans to meet their pets' unique needs. Providing an intuitive and free platform simplifies the complexities of canine nutrition and promotes healthier lives for dogs.
+The **SniffServe** is a mobile app that offers personalized dietary recommendations for pet dogs. Developed with Swift, SwiftUI, and powered by the OpenAI ChatGPT API, the app enables dog owners to create tailored, nutritious meal plans to meet their pets' unique needs. Providing an intuitive and free platform simplifies the complexities of canine nutrition and promotes healthier lives for dogs.
 
 ## Key Features
 ### Core Functionalities

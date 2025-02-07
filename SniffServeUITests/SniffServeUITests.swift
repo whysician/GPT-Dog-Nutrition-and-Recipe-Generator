@@ -1,13 +1,13 @@
 //
-//  GPT_Dog_Nutrition_and_Recipe_GeneratorUITests.swift
-//  GPT-Dog-Nutrition-and-Recipe-GeneratorUITests
+//  SniffServeUITests.swift
+//  SniffServeUITests
 //
 //  Created by Victoria Sok on 1/29/25.
 //
 
 import XCTest
 
-final class GPT_Dog_Nutrition_and_Recipe_GeneratorUITests: XCTestCase {
+final class SniffServeUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

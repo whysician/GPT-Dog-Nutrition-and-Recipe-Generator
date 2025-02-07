@@ -1,6 +1,6 @@
 //
-//  GPT_Dog_Nutrition_and_Recipe_GeneratorApp.swift
-//  GPT-Dog-Nutrition-and-Recipe-Generator
+//  SniffServeApp.swift
+//  SniffServe
 //
 //  Created by Victoria Sok on 1/29/25.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct GPT_Dog_Nutrition_and_Recipe_GeneratorApp: App {
+struct SniffServeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,

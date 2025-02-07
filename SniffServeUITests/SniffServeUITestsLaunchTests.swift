@@ -1,13 +1,13 @@
 //
-//  GPT_Dog_Nutrition_and_Recipe_GeneratorUITestsLaunchTests.swift
-//  GPT-Dog-Nutrition-and-Recipe-GeneratorUITests
+//  SniffServeUITestsLaunchTests.swift
+//  SniffServeUITests
 //
 //  Created by Victoria Sok on 1/29/25.
 //
 
 import XCTest
 
-final class GPT_Dog_Nutrition_and_Recipe_GeneratorUITestsLaunchTests: XCTestCase {
+final class SniffServeUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,14 +1,14 @@
 //
-//  GPT_Dog_Nutrition_and_Recipe_GeneratorTests.swift
-//  GPT-Dog-Nutrition-and-Recipe-GeneratorTests
+//  SniffServeTests.swift
+//  SniffServeTests
 //
 //  Created by Victoria Sok on 1/29/25.
 //
 
 import XCTest
-@testable import GPT_Dog_Nutrition_and_Recipe_Generator
+@testable import SniffServe
 
-final class GPT_Dog_Nutrition_and_Recipe_GeneratorTests: XCTestCase {
+final class SniffServeTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -29,40 +29,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBA642D4AC9CE0059EBC3 /* SniffServe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SniffServe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBA762D4AC9D00059EBC3 /* SniffServeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SniffServeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBA802D4AC9D00059EBC3 /* SniffServeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SniffServeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2EBAC62D4ADB9E0059EBC3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AE2EBAC82D4ADBB70059EBC3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		AE2EBACB2D5060CF0059EBC3 /* Exceptions for "GPT-Dog-Nutrition-and-Recipe-Generator" folder in "GPT-Dog-Nutrition-and-Recipe-Generator" target */ = {
+		AE2EBACB2D5060CF0059EBC3 /* Exceptions for "SniffServe" folder in "SniffServe" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+			target = AE2EBA632D4AC9CE0059EBC3 /* SniffServe */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */ = {
+		AE2EBA662D4AC9CE0059EBC3 /* SniffServe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				AE2EBACB2D5060CF0059EBC3 /* Exceptions for "GPT-Dog-Nutrition-and-Recipe-Generator" folder in "GPT-Dog-Nutrition-and-Recipe-Generator" target */,
+				AE2EBACB2D5060CF0059EBC3 /* Exceptions for "SniffServe" folder in "SniffServe" target */,
 			);
-			path = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			path = SniffServe;
 			sourceTree = "<group>";
 		};
-		AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */ = {
+		AE2EBA792D4AC9D00059EBC3 /* SniffServeTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+			path = SniffServeTests;
 			sourceTree = "<group>";
 		};
-		AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */ = {
+		AE2EBA832D4AC9D00059EBC3 /* SniffServeUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+			path = SniffServeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -97,9 +97,9 @@
 			children = (
 				AE2EBAC82D4ADBB70059EBC3 /* README.md */,
 				AE2EBAC62D4ADB9E0059EBC3 /* .gitignore */,
-				AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
-				AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
-				AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+				AE2EBA662D4AC9CE0059EBC3 /* SniffServe */,
+				AE2EBA792D4AC9D00059EBC3 /* SniffServeTests */,
+				AE2EBA832D4AC9D00059EBC3 /* SniffServeUITests */,
 				AE2EBA652D4AC9CE0059EBC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,9 +107,9 @@
 		AE2EBA652D4AC9CE0059EBC3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */,
-				AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */,
-				AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */,
+				AE2EBA642D4AC9CE0059EBC3 /* SniffServe.app */,
+				AE2EBA762D4AC9D00059EBC3 /* SniffServeTests.xctest */,
+				AE2EBA802D4AC9D00059EBC3 /* SniffServeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */ = {
+		AE2EBA632D4AC9CE0059EBC3 /* SniffServe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-Generator" */;
+			buildConfigurationList = AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServe" */;
 			buildPhases = (
 				AE2EBA602D4AC9CE0059EBC3 /* Sources */,
 				AE2EBA612D4AC9CE0059EBC3 /* Frameworks */,
@@ -130,18 +130,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
+				AE2EBA662D4AC9CE0059EBC3 /* SniffServe */,
 			);
-			name = "GPT-Dog-Nutrition-and-Recipe-Generator";
+			name = SniffServe;
 			packageProductDependencies = (
 			);
 			productName = "GPT-Dog-Nutrition-and-Recipe-Generator";
-			productReference = AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */;
+			productReference = AE2EBA642D4AC9CE0059EBC3 /* SniffServe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AE2EBA752D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */ = {
+		AE2EBA752D4AC9D00059EBC3 /* SniffServeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorTests" */;
+			buildConfigurationList = AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServeTests" */;
 			buildPhases = (
 				AE2EBA722D4AC9D00059EBC3 /* Sources */,
 				AE2EBA732D4AC9D00059EBC3 /* Frameworks */,
@@ -153,18 +153,18 @@
 				AE2EBA782D4AC9D00059EBC3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
+				AE2EBA792D4AC9D00059EBC3 /* SniffServeTests */,
 			);
-			name = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
+			name = SniffServeTests;
 			packageProductDependencies = (
 			);
 			productName = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests";
-			productReference = AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */;
+			productReference = AE2EBA762D4AC9D00059EBC3 /* SniffServeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AE2EBA7F2D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */ = {
+		AE2EBA7F2D4AC9D00059EBC3 /* SniffServeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests" */;
+			buildConfigurationList = AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServeUITests" */;
 			buildPhases = (
 				AE2EBA7C2D4AC9D00059EBC3 /* Sources */,
 				AE2EBA7D2D4AC9D00059EBC3 /* Frameworks */,
@@ -176,13 +176,13 @@
 				AE2EBA822D4AC9D00059EBC3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+				AE2EBA832D4AC9D00059EBC3 /* SniffServeUITests */,
 			);
-			name = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
+			name = SniffServeUITests;
 			packageProductDependencies = (
 			);
 			productName = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests";
-			productReference = AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */;
+			productReference = AE2EBA802D4AC9D00059EBC3 /* SniffServeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "GPT-Dog-Nutrition-and-Recipe-Generator" */;
+			buildConfigurationList = AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "SniffServe" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -222,9 +222,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
-				AE2EBA752D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
-				AE2EBA7F2D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
+				AE2EBA632D4AC9CE0059EBC3 /* SniffServe */,
+				AE2EBA752D4AC9D00059EBC3 /* SniffServeTests */,
+				AE2EBA7F2D4AC9D00059EBC3 /* SniffServeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,12 +282,12 @@
 /* Begin PBXTargetDependency section */
 		AE2EBA782D4AC9D00059EBC3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+			target = AE2EBA632D4AC9CE0059EBC3 /* SniffServe */;
 			targetProxy = AE2EBA772D4AC9D00059EBC3 /* PBXContainerItemProxy */;
 		};
 		AE2EBA822D4AC9D00059EBC3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+			target = AE2EBA632D4AC9CE0059EBC3 /* SniffServe */;
 			targetProxy = AE2EBA812D4AC9D00059EBC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -485,7 +485,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPT-Dog-Nutrition-and-Recipe-Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GPT-Dog-Nutrition-and-Recipe-Generator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffServe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffServe";
 			};
 			name = Debug;
 		};
@@ -504,7 +504,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPT-Dog-Nutrition-and-Recipe-Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GPT-Dog-Nutrition-and-Recipe-Generator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SniffServe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SniffServe";
 			};
 			name = Release;
 		};
@@ -545,7 +545,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "GPT-Dog-Nutrition-and-Recipe-Generator" */ = {
+		AE2EBA5F2D4AC9CE0059EBC3 /* Build configuration list for PBXProject "SniffServe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE2EBA882D4AC9D00059EBC3 /* Debug */,
@@ -554,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-Generator" */ = {
+		AE2EBA8A2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE2EBA8B2D4AC9D00059EBC3 /* Debug */,
@@ -563,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorTests" */ = {
+		AE2EBA8D2D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE2EBA8E2D4AC9D00059EBC3 /* Debug */,
@@ -572,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests" */ = {
+		AE2EBA902D4AC9D00059EBC3 /* Build configuration list for PBXNativeTarget "SniffServeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE2EBA912D4AC9D00059EBC3 /* Debug */,
