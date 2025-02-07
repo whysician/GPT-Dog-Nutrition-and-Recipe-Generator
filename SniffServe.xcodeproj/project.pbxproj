@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AE2EBAC72D4ADB9E0059EBC3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AE2EBAC62D4ADB9E0059EBC3 /* .gitignore */; };
+		AE2EBAC92D4ADBB70059EBC3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AE2EBAC82D4ADBB70059EBC3 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		AE2EBA772D4AC9D00059EBC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +32,26 @@
 		AE2EBA642D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2EBA762D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2EBA802D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPT-Dog-Nutrition-and-Recipe-GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2EBAC62D4ADB9E0059EBC3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AE2EBAC82D4ADBB70059EBC3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AE2EBACB2D5060CF0059EBC3 /* Exceptions for "GPT-Dog-Nutrition-and-Recipe-Generator" folder in "GPT-Dog-Nutrition-and-Recipe-Generator" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AE2EBA632D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AE2EBACB2D5060CF0059EBC3 /* Exceptions for "GPT-Dog-Nutrition-and-Recipe-Generator" folder in "GPT-Dog-Nutrition-and-Recipe-Generator" target */,
+			);
 			path = "GPT-Dog-Nutrition-and-Recipe-Generator";
 			sourceTree = "<group>";
 		};
@@ -75,6 +95,8 @@
 		AE2EBA5B2D4AC9CE0059EBC3 = {
 			isa = PBXGroup;
 			children = (
+				AE2EBAC82D4ADBB70059EBC3 /* README.md */,
+				AE2EBAC62D4ADB9E0059EBC3 /* .gitignore */,
 				AE2EBA662D4AC9CE0059EBC3 /* GPT-Dog-Nutrition-and-Recipe-Generator */,
 				AE2EBA792D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorTests */,
 				AE2EBA832D4AC9D00059EBC3 /* GPT-Dog-Nutrition-and-Recipe-GeneratorUITests */,
@@ -212,6 +234,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2EBAC72D4ADB9E0059EBC3 /* .gitignore in Resources */,
+				AE2EBAC92D4ADBB70059EBC3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,9 +423,9 @@
 				DEVELOPMENT_TEAM = 93CD8AWYQ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GPT-Dog-Nutrition-and-Recipe-Generator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,9 +452,9 @@
 				DEVELOPMENT_TEAM = 93CD8AWYQ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "GPT-Dog-Nutrition-and-Recipe-Generator/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
