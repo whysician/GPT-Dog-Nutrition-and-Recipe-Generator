@@ -62,3 +62,6 @@ The **SniffServe** is a mobile app that offers personalized dietary recommendati
 3. Install dependencies as needed. 
 4. Replace placeholders in the code with your OpenAI API Key.
 5. Run the app on the Xcode simulator or a physical iOS device.
+
+
+This is a test
