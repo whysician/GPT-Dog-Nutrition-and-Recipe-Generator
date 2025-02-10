@@ -1,0 +1,12 @@
+name: Dummy Status Check Auto Pass
+
+on:
+  pull_request:
+    types: [synchronize, opened, reopened]
+
+jobs:
+  auto-pass-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark dummy check as passed
+        run: echo "Dummy status check passed!"
