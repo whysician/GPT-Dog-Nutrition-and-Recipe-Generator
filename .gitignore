@@ -6,6 +6,7 @@
 *.xcuserstate
 *.xccheckout
 *.xcscmblueprint
+**/xcuserdata/
 
 # Build files
 DerivedData/
