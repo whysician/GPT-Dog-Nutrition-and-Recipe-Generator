@@ -14,7 +14,6 @@ struct CircleImage: View {
     var body: some View {
         if imageName != "" {
             Circle()
-                .stroke(.white, lineWidth: 10)
                 .fill(.white)
                 .overlay(
                     Image(imageName)
@@ -25,10 +24,9 @@ struct CircleImage: View {
                 .frame(width: size, height: size)
         } else {
             Circle()
-                .stroke(.white, lineWidth: 10)
                 .fill(.white)
                 .overlay(
-                    Image(systemName: "photo")
+                    Image(systemName: "photo.badge.plus")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .padding(2)
