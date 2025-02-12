@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BgView<Content: View>: View {
+struct BaseView<Content: View>: View {
     let screenTitle: String?
     let content: () -> Content
     
@@ -129,7 +129,7 @@ struct BgView<Content: View>: View {
 
 
 #Preview {
-    BgView(
+    BaseView(
         screenTitle: "Test Tile",
         topLeftIcon: "chevron.backward",
         topLeftAction: {},
