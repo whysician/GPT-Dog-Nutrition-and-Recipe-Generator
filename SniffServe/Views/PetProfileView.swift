@@ -26,21 +26,13 @@ struct PetView: View {
         ScrollView {
             LazyVStack(spacing: 10) {
                 if UIImage(named: "Doge") != nil {
-                    Image("Doge")  // Placeholder dog image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
-                        .mask(
-                            Circle()
-                                .scaleEffect(0.5)
-                                .frame(width: 300, height: 300)
-                        )
+                    CircleImage(imageName: "Doge", size: 200)
+                        .padding(.top, 35)
+                        .padding(.bottom, 30)
                 } else {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
-                        .foregroundStyle(.gray)
+                    CircleImage(size: 100)
+                        .padding(.top, 35)
+                        .padding(.bottom, 30)
                 }
                 
                 VStack {
@@ -69,9 +61,9 @@ struct PetView: View {
                             .padding(.bottom, 1)
                             .font(.system(size: 20))
                         
-                        Text("8 years" + ",")  // Placeholder age (years)
+                        Text("8" + " years,")  // Placeholder age (years)
                             .font(.system(size: 20))
-                        Text("2 months")      // Placerholder age (month)
+                        Text("2" + " months")      // Placerholder age (months)
                             .offset(y: 25)
                             .font(.system(size: 20))
                     }
@@ -116,8 +108,9 @@ struct PetView: View {
                             
                             ForEach(chronicList, id: \.self) { data in
                                 HStack(alignment: .top) {
-                                    Text("*")   // Unable to figure out how to add
-                                    Text(data)  // bulletpoints so "*" is temp solution
+                                    Text("\u{2022}")
+                                        .font(.system(size: 17))
+                                    Text(data)
                                 }
                             }
                         }
