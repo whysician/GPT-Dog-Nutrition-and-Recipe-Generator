@@ -1,5 +1,5 @@
 //
-//  RecipeViewModel.swift
+//  RecipeListView.swift
 //  SniffServe
 //
 //  Created by Victoria Sok on 2/7/25.
