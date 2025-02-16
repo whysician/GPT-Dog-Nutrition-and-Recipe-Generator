@@ -1,18 +1,18 @@
 //
-//  PetHomeView.swift
+//  EditPetView.swift
 //  SniffServe
 //
-//  Created by Victoria Sok on 2/7/25.
+//  Created by Eric Tolson on 2/15/25.
 //
 
 import SwiftUI
 
-struct PetHomeView: View {
+struct EditPetView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    PetHomeView()
+    EditPetView()
 }
