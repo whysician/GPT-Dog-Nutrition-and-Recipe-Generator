@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Recipe: Identifiable, Codable {
+    var id: UUID = UUID()
+    var title: String
+    var ingredients: [String]
+    var instructions: [String]
+}
