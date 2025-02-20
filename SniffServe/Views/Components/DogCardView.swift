@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct DogCard: View {
-    let dog: Dog
+struct DogCardView: View {
+    var dog: Dog
+    var deleteAction: () -> Void
     
     var body: some View {
         HStack {
@@ -19,6 +20,7 @@ struct DogCard: View {
                     .padding(.leading, 10)
             } else {
                 CircleImage(size: 50)
+                    .foregroundStyle(.black)
                     .padding(.top, 35)
                     .padding(.bottom, 30)
                     .padding(.leading, 25)
@@ -26,11 +28,12 @@ struct DogCard: View {
             
             Text(dog.name)
                 .font(.system(size: 22, weight: .semibold))
+                .foregroundStyle(.black)
                 .padding(.leading, 10)
             
             Spacer()
             Button {
-                // TODO
+                deleteAction()
             } label: {
                 Image(systemName: "trash.fill")
                     .foregroundColor(.black)
@@ -44,12 +47,3 @@ struct DogCard: View {
     }
 }
 
-
-struct DogCardView_Previews: PreviewProvider {
-    static var testDog = Dog(name: "Test Dog", breed: "Test Breed", age_years: 2, age_months: 8, gender: "female")
-    
-    static var previews: some View {
-        DogCard(dog: testDog)
-            .previewLayout(.fixed(width: 500, height: 150))
-    }
-}
