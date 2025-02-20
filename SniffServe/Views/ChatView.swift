@@ -13,8 +13,7 @@ struct ChatView: View {
     @State private var selectedDog = Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male")
 
     var body: some View {
-        VStack {
-            // Header
+        VStack(spacing: 0) {
             HStack {
                 Button(action: {}) {
                     Image(systemName: "chevron.backward")
@@ -27,15 +26,13 @@ struct ChatView: View {
 
                 Text("Chat with AI")
                     .font(.title)
-                    .bold()
+                    .foregroundColor(.black)
 
                 Spacer()
             }
             .padding()
             .background(Color.green)
-            .foregroundColor(.white)
 
-            // Chat messages display
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(viewModel.messages) { message in
@@ -45,7 +42,6 @@ struct ChatView: View {
             }
             .padding()
 
-            // Message input area
             HStack {
                 TextField("Type your message here...", text: $viewModel.userInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -61,26 +57,34 @@ struct ChatView: View {
             }
             .padding()
 
-            // Generate recipe button
-            Button("Generate Recipe for Dog") {
-                viewModel.generateRecipeForDog(dog: selectedDog)
-            }
-            .padding()
-            .background(Color.orange)
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            Spacer()
 
-            // Conditional save recipe button
-            if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
-                Button("Save Recipe") {
-                    recipeViewModel.addRecipe(recipe)
-                    viewModel.showSaveRecipeOption = false
+            VStack(spacing: 20) {
+                if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
+                    Button("Save Recipe") {
+                        recipeViewModel.addRecipe(recipe)
+                        viewModel.showSaveRecipeOption = false
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 20)
+                }
+
+                Button("Generate Recipe") {
+                    viewModel.generateRecipeForDog(dog: selectedDog)
                 }
                 .padding()
-                .background(Color.blue)
+                .background(Color.orange)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .padding(.horizontal, 20)
             }
+            .padding(.vertical, 20)
+            .frame(maxWidth: .infinity)
+            .background(Color.green)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
