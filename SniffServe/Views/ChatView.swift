@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ChatView: View {
     @StateObject private var viewModel = OpenAIViewModel()
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
+    @State private var selectedDog = Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male")
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Button(action: {}) {
                     Image(systemName: "chevron.backward")
@@ -24,13 +26,12 @@ struct ChatView: View {
 
                 Text("Chat with AI")
                     .font(.title)
-                    .bold()
+                    .foregroundColor(.black)
 
                 Spacer()
             }
             .padding()
             .background(Color.green)
-            .foregroundColor(.white)
 
             ScrollView {
                 LazyVStack(spacing: 10) {
@@ -38,10 +39,9 @@ struct ChatView: View {
                         MessageView(message: message)
                     }
                 }
-                .padding(.horizontal, 15)
             }
+            .padding()
 
-            // Input area for sending messages
             HStack {
                 TextField("Type your message here...", text: $viewModel.userInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -56,39 +56,41 @@ struct ChatView: View {
                 .cornerRadius(10)
             }
             .padding()
-        }
-    }
-}
 
-// Custom view for displaying messages
-struct MessageView: View {
-    var message: ChatMessage
+            Spacer()
 
-    var body: some View {
-        HStack {
-            if message.role == "user" {
-                Spacer()
-                Text(message.content)
+            VStack(spacing: 20) {
+                if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
+                    Button("Save Recipe") {
+                        recipeViewModel.addRecipe(recipe)
+                        viewModel.showSaveRecipeOption = false
+                    }
                     .padding()
-                    .background(Color.blue.opacity(0.2))
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
-                    .foregroundColor(Color.black)
-            } else {
-                Text(message.content)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-                    .foregroundColor(Color.black)
-                Spacer()
+                    .padding(.horizontal, 20)
+                }
+
+                Button("Generate Recipe") {
+                    viewModel.generateRecipeForDog(dog: selectedDog)
+                }
+                .padding()
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .padding(.horizontal, 20)
             }
+            .padding(.vertical, 20)
+            .frame(maxWidth: .infinity)
+            .background(Color.green)
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .padding(.horizontal)
     }
 }
 
-// Preview provider for SwiftUI preview
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView().environmentObject(RecipeViewModel())
     }
 }
