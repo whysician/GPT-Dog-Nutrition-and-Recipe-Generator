@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BaseView<Content: View>: View {
+struct BaseView<Content: View, TopRightView: View>: View {
     let screenTitle: String?
     let content: () -> Content
     
@@ -16,6 +16,7 @@ struct BaseView<Content: View>: View {
     let topLeftAction: () -> Void
     let topRightIcon: String?
     let topRightAction: () -> Void
+    @ViewBuilder let topRightView: TopRightView
     
     let botLeftIcon: String?
     let botLeftAction: () -> Void
@@ -33,11 +34,12 @@ struct BaseView<Content: View>: View {
         topLeftAction: @escaping () -> Void = {},
         topRightIcon: String? = nil,
         topRightAction: @escaping () -> Void = {},
+        topRightView: TopRightView = EmptyView(),
         botLeftIcon: String? = nil,
         botLeftAction: @escaping () -> Void = {},
         botRightIcon: String? = nil,
         botRightAction: @escaping () -> Void = {},
-        @ViewBuilder content: @escaping() -> Content
+        @ViewBuilder content: @escaping () -> Content
     ){
         self.screenTitle = screenTitle
         self.content = content
@@ -46,6 +48,7 @@ struct BaseView<Content: View>: View {
         self.topLeftAction = topLeftAction
         self.topRightIcon = topRightIcon
         self.topRightAction = topRightAction
+        self.topRightView = topRightView
         
         self.botLeftIcon = botLeftIcon
         self.botLeftAction = botLeftAction
@@ -53,93 +56,98 @@ struct BaseView<Content: View>: View {
         self.botRightAction = botRightAction
     }
     
+    @State private var showView = false
+    @ObservedObject var dogViewModel = DogViewModel()
+    
     var body: some View {
-        VStack {
-            ZStack {
-                Rectangle()
-                    .fill(Color.white)
-                content()
-            }
-        }
-        // Create green sections at top and bottom of screen for the
-        // placement of icons and titles
-        .safeAreaInset(edge: .top, spacing: 0) {
-            HStack {
-                Button {
-                    topLeftAction()
-                } label: {
-                    Image(systemName: topLeftIcon ?? "")
-                        .foregroundColor(.black)
-                        .font(.largeTitle)
+        NavigationStack {
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .fill(Color.white)
+                    content()
                 }
-                .padding(.leading, 5.0)
-
-                
-                Spacer()
-                Text(screenTitle ?? "")
-                    .font(.title)
+            }
+            // Create green sections at top and bottom of screen for the
+            // placement of icons and titles
+            .safeAreaInset(edge: .top, spacing: 0) {
+                HStack {
+                    Button {
+                        topLeftAction()
+                    } label: {
+                        Image(systemName: topLeftIcon ?? "")
+                            .foregroundColor(.black)
+                            .font(.largeTitle)
+                    }
+                    .padding(.leading, 5.0)
                     
-                Spacer()
-                Button {
-                    topRightAction()
-                } label: {
-                    Image(systemName: topRightIcon ?? "")
-                        .foregroundColor(.black)
-                        .font(.largeTitle)
+                    
+                    Spacer()
+                    Text(screenTitle ?? "")
+                        .font(.title)
+                    
+                    Spacer()
+                    
+                    Button {
+                        showView.toggle()
+                    } label: {
+                        Image(systemName: topRightIcon ?? "")
+                            .foregroundColor(.black)
+                            .font(.largeTitle)
+                    }
+                    .padding(.leading, 5.0)
+
                 }
-                .padding(.leading, 5.0)
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: 70)
+                .background(.green)
+                .navigationDestination(isPresented: $showView) {
+                    topRightView
+                }
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: 70)
-            .background(.green)
+            
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                HStack(spacing: 120) {
+                    
+                    if botLeftIcon != nil {
+                        Button {
+                            botLeftAction()
+                        } label: {
+                            Image(systemName: botLeftIcon ?? "")
+                                .foregroundColor(.black)
+                                .font(.system(size: 45))
+                        }
+                        .padding(.top, 25.0)
+                    }
+                    
+                    if botRightIcon != nil {
+                        Button {
+                            botRightAction()
+                        } label: {
+                            Image(systemName: botRightIcon ?? "")
+                                .foregroundColor(.black)
+                                .font(.system(size: 45))
+                        }
+                        .padding(.top, 35.0)
+                    }
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: 70
+                )
+                .background(.green)
+            }
         }
-        
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            HStack(spacing: 120) {
-                
-                if botLeftIcon != nil {
-                    Button {
-                        botLeftAction()
-                    } label: {
-                        Image(systemName: botLeftIcon ?? "")
-                            .foregroundColor(.black)
-                            .font(.system(size: 45))
-                    }
-                    .padding(.top, 25.0)
-                }
- 
-                if botRightIcon != nil {
-                    Button {
-                        botRightAction()
-                    } label: {
-                        Image(systemName: botRightIcon ?? "")
-                            .foregroundColor(.black)
-                            .font(.system(size: 45))
-                    }
-                    .padding(.top, 35.0)
-                }
-            }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: 70
-            )
-            .background(.green)
+        .environmentObject(dogViewModel)
+    }
+}
+
+struct BaseView_Previews: PreviewProvider {
+    static var previews: some View {
+        BaseView() {
+            
         }
     }
 }
 
 
-#Preview {
-    BaseView(
-        screenTitle: "Test Tile",
-        topLeftIcon: "chevron.backward",
-        topLeftAction: {},
-        topRightIcon: "plus",
-        topRightAction: {},
-        botLeftIcon: "checkmark",
-        botLeftAction: {},
-        botRightIcon: "xmark",
-        botRightAction: {}
-    ) {
-        
-    }
-}
+
