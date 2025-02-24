@@ -11,7 +11,7 @@ struct PetProfileView: View {
     var dog: Dog
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
-
+    @StateObject private var viewModel = RecipeViewModel()
     var body: some View {
         NavigationStack {
             BaseView(
@@ -19,7 +19,6 @@ struct PetProfileView: View {
                 topLeftIcon: "chevron.backward",
                 topLeftAction: { dismiss() },
                 topRightIcon: "pencil",
-                // topRightView: EditPetView(dog: Dog), // In EditView, initialize a dog variable to access passed dog
                 botLeftIcon: "book.closed.fill",
                 botLeftAction: { showingRecipes = true },
                 botRightIcon: "bubble"
@@ -27,11 +26,20 @@ struct PetProfileView: View {
                 PetView(dog: dog)
             }
             .navigationDestination(isPresented: $showingRecipes) {
-                RecipeListView(viewModel: RecipeViewModel(), dog: dog)
+                let updatedDog = Dog(
+                    name: dog.name,
+                    breed: dog.breed,
+                    age_years: dog.age_years,
+                    gender: dog.gender,
+                    chronic_conditions: dog.chronic_conditions,
+                    recipeIDs: viewModel.recipes.map { $0.id } // Assign sample recipes
+                )
+                RecipeListView(viewModel: viewModel, dog: updatedDog)
             }
         }
     }
 }
+
 
 struct PetView: View {
     var dog: Dog
@@ -157,6 +165,16 @@ struct PetView: View {
 
 struct PetProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PetProfileView(dog: Dog(name: "Daisy", breed: "French Bulldog", age_years: 14, gender: "Female", chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"]))
+        let viewModel = RecipeViewModel()
+        let sampleRecipes = viewModel.recipes.map { $0.id }
+
+        PetProfileView(dog: Dog(
+            name: "Daisy",
+            breed: "French Bulldog",
+            age_years: 14,
+            gender: "Female",
+            chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"],
+            recipeIDs: sampleRecipes
+        ))
     }
 }
