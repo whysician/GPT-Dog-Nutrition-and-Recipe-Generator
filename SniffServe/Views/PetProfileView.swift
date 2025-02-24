@@ -11,7 +11,9 @@ struct PetProfileView: View {
     var dog: Dog
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
+    @State private var showingChat = false
     @StateObject private var viewModel = RecipeViewModel()
+
     var body: some View {
         NavigationStack {
             BaseView(
@@ -21,7 +23,8 @@ struct PetProfileView: View {
                 topRightIcon: "pencil",
                 botLeftIcon: "book.closed.fill",
                 botLeftAction: { showingRecipes = true },
-                botRightIcon: "bubble"
+                botRightIcon: "bubble",
+                botRightAction: { showingChat = true }
             ) {
                 PetView(dog: dog)
             }
@@ -36,10 +39,13 @@ struct PetProfileView: View {
                 )
                 RecipeListView(viewModel: viewModel, dog: updatedDog)
             }
+            .navigationDestination(isPresented: $showingChat) {
+                ChatView(dog: dog)
+                    .navigationBarBackButtonHidden(true)
+            }
         }
     }
 }
-
 
 struct PetView: View {
     var dog: Dog
@@ -65,12 +71,10 @@ struct PetView: View {
                     Text(dog.breed)
                         .font(.title)
                         .fontWeight(.light)
-
                 }
                 .offset(y: -20)
 
                 HStack {
-
                     ZStack {
                         Rectangle()
                             .fill(Color(hue: 0.542, saturation: 0.701, brightness: 0.973).opacity(0.3))
@@ -80,12 +84,11 @@ struct PetView: View {
                         Text("Age")
                             .offset(y: -30)
                             .fontWeight(.semibold)
-                            .padding(.bottom, 1)
                             .font(.system(size: 20))
 
-                        Text(String(dog.age_years) + " years,")
+                        Text("\(dog.age_years) years,")
                             .font(.system(size: 20))
-                        Text(String(dog.age_months) + " months")
+                        Text("\(dog.age_months) months")
                             .offset(y: 25)
                             .font(.system(size: 20))
                     }
@@ -98,10 +101,8 @@ struct PetView: View {
                             .frame(height: 120)
                             .cornerRadius(20)
 
-
                         Text("Gender")
                             .fontWeight(.semibold)
-                            .padding(.bottom, 1)
                             .font(.system(size: 20))
                             .offset(y: -30)
 
@@ -115,7 +116,6 @@ struct PetView: View {
                 Spacer()
 
                 VStack(spacing: 5.0) {
-
                     if dog.chronic_conditions.isEmpty {
                         Text("Chronic Conditions: None")
                             .fontWeight(.semibold)
@@ -143,7 +143,6 @@ struct PetView: View {
                             .padding(.vertical, 10)
                             .padding(.leading, 10)
                             .padding(.trailing, 30)
-
                         }
                         .padding(.horizontal, 10)
                         .padding(.top, 0)
