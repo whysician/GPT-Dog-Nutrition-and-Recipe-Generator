@@ -32,7 +32,7 @@ struct PetProfileView: View {
                     age_years: dog.age_years,
                     gender: dog.gender,
                     chronic_conditions: dog.chronic_conditions,
-                    recipeIDs: viewModel.recipes.map { $0.id } // Assign sample recipes
+                    recipeIDs: viewModel.recipes.map { $0.id }
                 )
                 RecipeListView(viewModel: viewModel, dog: updatedDog)
             }

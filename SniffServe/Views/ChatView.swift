@@ -11,7 +11,8 @@ struct ChatView: View {
     @StateObject private var viewModel = OpenAIViewModel()
     @EnvironmentObject var recipeViewModel: RecipeViewModel
     @State private var selectedDog = Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male")
-
+    @State private var showingSuccessAlert = false
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -64,6 +65,7 @@ struct ChatView: View {
                     Button("Save Recipe") {
                         recipeViewModel.addRecipe(recipe)
                         viewModel.showSaveRecipeOption = false
+                        showingSuccessAlert = true // Show success pop-up
                     }
                     .padding()
                     .background(Color.blue)
@@ -85,6 +87,9 @@ struct ChatView: View {
             .frame(maxWidth: .infinity)
             .background(Color.green)
             .edgesIgnoringSafeArea(.bottom)
+        }
+        .alert(isPresented: $showingSuccessAlert) {
+            Alert(title: Text("Success"), message: Text("Recipe saved successfully!"), dismissButton: .default(Text("OK")))
         }
     }
 }
