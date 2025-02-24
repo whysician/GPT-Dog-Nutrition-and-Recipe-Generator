@@ -65,6 +65,8 @@ struct ChatView: View {
                 if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
                     Button("Save Recipe") {
                         recipeViewModel.addRecipe(recipe)
+                        var updatedDog = dog
+                        updatedDog.recipeIDs.append(recipe.id)
                         viewModel.showSaveRecipeOption = false
                         showingSuccessAlert = true
                     }
