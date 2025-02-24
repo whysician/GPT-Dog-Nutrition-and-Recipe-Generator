@@ -24,7 +24,7 @@ struct PetProfileView: View {
                 botLeftIcon: "book.closed.fill",
                 botLeftAction: { showingRecipes = true },
                 botRightIcon: "bubble",
-                botRightAction: { showingChat = true } // Navigate to ChatView
+                botRightAction: { showingChat = true }
             ) {
                 PetView(dog: dog)
             }
@@ -37,16 +37,18 @@ struct PetProfileView: View {
                     chronic_conditions: dog.chronic_conditions,
                     recipeIDs: viewModel.recipes.map { $0.id }
                 )
-                RecipeListView(viewModel: viewModel, dog: updatedDog)
+                RecipeListView(dog: updatedDog)
+                    .environmentObject(viewModel)
             }
             .navigationDestination(isPresented: $showingChat) {
                 ChatView(dog: dog)
-                    .environmentObject(viewModel) // Ensure RecipeViewModel is passed
-                    .navigationBarBackButtonHidden(true) // Hide default back button
+                    .environmentObject(viewModel)
+                    .navigationBarBackButtonHidden(true)
             }
         }
     }
 }
+
 struct PetView: View {
     var dog: Dog
 
@@ -175,6 +177,6 @@ struct PetProfileView_Previews: PreviewProvider {
             chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"],
             recipeIDs: sampleRecipes
         ))
-        .environmentObject(viewModel) // Provide RecipeViewModel environment
+        .environmentObject(viewModel)
     }
 }
