@@ -41,10 +41,8 @@ struct RecipeListView: View {
 
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = RecipeViewModel()  // This will automatically load the sample recipes
+        let viewModel = RecipeViewModel()
         var sampleDog = Dog(name: "Buddy", breed: "Golden Retriever", age_years: 5, gender: "Male", chronic_conditions: ["None"])
-
-        // Assign recipe IDs to the sample dog from the ViewModel's recipes
         sampleDog.recipeIDs = viewModel.recipes.map { $0.id }
 
         return RecipeListView(viewModel: viewModel, dog: sampleDog)

@@ -9,17 +9,17 @@
 import SwiftUI
 
 struct PetInputFormView: View {
-    @State private var petName = ""
-    @State private var petAge = ""
-    @State private var petBreed = ""
-    @State private var petGender = ""
-    @State private var petConditions = ""
+    @Binding var petName: String
+    @Binding var petAge: String
+    @Binding var petBreed: String
+    @Binding var petGender: String
+    @Binding var petConditions: String
 
     var onSave: () -> Void
     var onCancel: () -> Void
     var formTitle: String
     var petTitle: String
-    var petTitleOpacity: Double = 1.0
+    var petTitleOpacity: Double
 
     var body: some View {
         BaseView(
@@ -35,14 +35,13 @@ struct PetInputFormView: View {
             botRightAction: onCancel
         ) {
             VStack(spacing: 20) {
-                
                 // Pet picture section
                 VStack {
                     ZStack {
                         Circle()
                             .fill(Color(.systemTeal).opacity(0.3))
                             .frame(width: 100, height: 100)
-                        
+
                         Image(systemName: "photo.on.rectangle")
                             .resizable()
                             .scaledToFit()
@@ -59,9 +58,9 @@ struct PetInputFormView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     CustomTextField(label: "Name", text: $petName, placeholder: "e.g. Doge")
                     CustomTextField(label: "Age", text: $petAge, keyboardType: .numberPad, placeholder: "e.g. 3")
-                    CustomTextField(label: "Breed", text: $petBreed, placeholder: "e.g. Chiba Inu")
+                    CustomTextField(label: "Breed", text: $petBreed, placeholder: "e.g. Shiba Inu")
                     CustomTextField(label: "Gender", text: $petGender, placeholder: "e.g. Male")
-                    CustomMultilineTextField(label: "Chronic Conditions", text: $petConditions, placeholder: "e.g. •  Hip Dysplasia")
+                    CustomMultilineTextField(label: "Chronic Conditions", text: $petConditions, placeholder: "e.g., Hip Dysplasia")
                 }
                 .padding(.horizontal, 20)
             }
@@ -101,14 +100,14 @@ struct CustomMultilineTextField: View {
     @Binding var text: String
     var fieldWidth: CGFloat = 320
     var placeholder: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text(label)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.body)
                 .foregroundColor(.black)
-            
+
             ZStack(alignment: .topLeading) {
                 if text.isEmpty {
                     Text(placeholder)
@@ -116,7 +115,7 @@ struct CustomMultilineTextField: View {
                         .padding(15)
                         .allowsHitTesting(false)
                 }
-                
+
                 TextEditor(text: $text)
                     .frame(width: fieldWidth, height: 100)
                     .padding()
@@ -127,15 +126,22 @@ struct CustomMultilineTextField: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
-    
 }
 
-
-#Preview {
-    PetInputFormView(
-        onSave: {},
-        onCancel: {},
-        formTitle: "",
-        petTitle: ""
-    )
+// Example usage for preview
+struct PetInputFormView_Previews: PreviewProvider {
+    static var previews: some View {
+        PetInputFormView(
+            petName: .constant("Buddy"),
+            petAge: .constant("4"),
+            petBreed: .constant("Golden Retriever"),
+            petGender: .constant("Male"),
+            petConditions: .constant("None"),
+            onSave: {},
+            onCancel: {},
+            formTitle: "Edit Pet Profile",
+            petTitle: "Pet Photo",
+            petTitleOpacity: 0.5
+        )
+    }
 }
