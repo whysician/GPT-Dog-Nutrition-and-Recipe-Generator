@@ -2,24 +2,22 @@
 //  PetInputFormView.swift
 //  SniffServe
 //
-//  Created by Victoria Sok on 2/16/25.
-//
-// Purpose: Resuable for AddPetView and EditPetView.
+//  Purpose: A reusable form component for both AddPetView and EditPetView.
 
 import SwiftUI
 
 struct PetInputFormView: View {
-    @State private var petName = ""
-    @State private var petAge = ""
-    @State private var petBreed = ""
-    @State private var petGender = ""
-    @State private var petConditions = ""
+    @Binding var petName: String
+    @Binding var petAge: String
+    @Binding var petBreed: String
+    @Binding var petGender: String
+    @Binding var petConditions: String
 
     var onSave: () -> Void
     var onCancel: () -> Void
     var formTitle: String
-    var petTitle: String
-    var petTitleOpacity: Double = 1.0
+    var petPhoto: String
+    var petPhotoOpacity: Double = 1.0
 
     var body: some View {
         BaseView(
@@ -49,17 +47,17 @@ struct PetInputFormView: View {
                             .frame(width: 40, height: 40)
                             .foregroundColor(.black)
                     }
-                    Text(petTitle)
+                    Text(petPhoto)
                         .font(.headline)
                         .foregroundColor(.black)
-                        .opacity(petTitleOpacity)
+                        .opacity(petPhotoOpacity)
                 }
 
                 // Input fields section
                 VStack(alignment: .leading, spacing: 16) {
                     CustomTextField(label: "Name", text: $petName, placeholder: "e.g. Doge")
                     CustomTextField(label: "Age", text: $petAge, keyboardType: .numberPad, placeholder: "e.g. 3")
-                    CustomTextField(label: "Breed", text: $petBreed, placeholder: "e.g. Chiba Inu")
+                    CustomTextField(label: "Breed", text: $petBreed, placeholder: "e.g. Shiba Inu")
                     CustomTextField(label: "Gender", text: $petGender, placeholder: "e.g. Male")
                     CustomMultilineTextField(label: "Chronic Conditions", text: $petConditions, placeholder: "e.g. •  Hip Dysplasia")
                 }
@@ -120,22 +118,37 @@ struct CustomMultilineTextField: View {
                 TextEditor(text: $text)
                     .frame(width: fieldWidth, height: 100)
                     .padding()
-                    .background(Color(.systemTeal).opacity(0.9))
+                    .background(Color(.systemTeal).opacity(0.3))
                     .cornerRadius(8)
                     .opacity(text.isEmpty ? 0.2 : 1)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(.systemTeal).opacity(text.isEmpty ? 0.5 : 0.0), lineWidth: 1)
+                    )
+                    
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
-    
 }
 
 
 #Preview {
-    PetInputFormView(
+    @Previewable @State var previewPetName = ""
+    @Previewable @State var previewPetAge = ""
+    @Previewable @State var previewPetBreed = ""
+    @Previewable @State var previewPetGender = ""
+    @Previewable @State var previewPetConditions = ""
+
+    return PetInputFormView(
+        petName: $previewPetName,
+        petAge: $previewPetAge,
+        petBreed: $previewPetBreed,
+        petGender: $previewPetGender,
+        petConditions: $previewPetConditions,
         onSave: {},
         onCancel: {},
-        formTitle: "",
-        petTitle: ""
+        formTitle: "<Title Name>",
+        petPhoto: "add photo"
     )
 }
