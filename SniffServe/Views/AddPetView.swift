@@ -2,29 +2,37 @@
 //  AddPetView.swift
 //  SniffServe
 //
-//  Created by Victoria Sok on 2/16/25.
-//
 //  Used PetInputFormView
 
 import SwiftUI
 
 struct AddPetView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var petName = ""
+    @State private var petAge = ""
+    @State private var petBreed = ""
+    @State private var petGender = ""
+    @State private var petConditions = ""
 
     var body: some View {
         PetInputFormView(
-            // Add pet functionality: save/cancel
+            petName: $petName,
+            petAge: $petAge,
+            petBreed: $petBreed,
+            petGender: $petGender,
+            petConditions: $petConditions,
             onSave: {
-                print("New pet added!")
-                presentationMode.wrappedValue.dismiss()
+                print("New pet added! Name: \(petName), Age: \(petAge), Breed: \(petBreed), Gender: \(petGender), Conditions: \(petConditions)")
+                dismiss()
             },
             onCancel: {
-                print("Add pet canceled")
-                presentationMode.wrappedValue.dismiss()
+                print("Add pet canceled!")
+                dismiss()
             },
             formTitle: "Create Pet Profile",
-            petTitle: "add photo",
-            petTitleOpacity: 0.4
+            petPhoto: "add photo",
+            petPhotoOpacity: 0.7
         )
     }
 }
