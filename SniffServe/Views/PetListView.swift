@@ -48,7 +48,7 @@ struct DogListView: View {
         VStack {
             ForEach(dogViewModel.dogs, id: \.self) { dog in
                 NavigationLink(destination: PetProfileView(dog: dog)
-                    .environmentObject(dogViewModel) // ✅ Ensure PetProfileView receives DogViewModel
+                    .environmentObject(dogViewModel)
                 ) {
                     DogCardView(dog: dog, deleteAction: {
                         if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
@@ -68,7 +68,7 @@ struct PetListView_Previews: PreviewProvider {
 
         return NavigationStack {
             PetListView()
-                .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is included
+                .environmentObject(dogViewModel)
         }
     }
 }

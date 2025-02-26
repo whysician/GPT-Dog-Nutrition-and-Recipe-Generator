@@ -29,7 +29,7 @@ struct PetProfileView: View {
         }
         .navigationDestination(isPresented: $showingRecipes) {
             if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
-                RecipeListView(dog: dogViewModel.dogs[index]) // ✅ Pass latest dog object
+                RecipeListView(dog: dogViewModel.dogs[index])
                     .environmentObject(dogViewModel)
             }
         }
@@ -152,7 +152,7 @@ struct PetProfileView_Previews: PreviewProvider {
                 gender: "Female",
                 chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"]
             ))
-            .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is passed
+            .environmentObject(dogViewModel)
         }
     }
 }

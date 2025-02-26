@@ -62,7 +62,7 @@ struct RecipeListView_Previews: PreviewProvider {
                     Recipe(title: "Doggy Dinner", ingredients: ["Chicken", "Rice"], instructions: ["Cook chicken", "Mix with rice"])
                 ]
             ))
-            .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is included
+            .environmentObject(dogViewModel)
         }
     }
 }

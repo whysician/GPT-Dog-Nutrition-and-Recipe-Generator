@@ -51,7 +51,6 @@ class OpenAIViewModel: ObservableObject {
                     let aiMessage = ChatMessage(role: "ai", content: reply)
                     self.messages.append(aiMessage)
 
-                    // Attempt to parse the reply into a Recipe
                     self.lastGeneratedRecipe = self.parseRecipeFromResponse(reply)
                     self.showSaveRecipeOption = self.lastGeneratedRecipe != nil
                 }

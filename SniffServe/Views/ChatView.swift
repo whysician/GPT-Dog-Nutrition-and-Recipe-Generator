@@ -104,7 +104,7 @@ struct ChatView_Previews: PreviewProvider {
 
         return NavigationStack {
             ChatView(dog: dogViewModel.dogs.first ?? Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male"))
-                .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is included
+                .environmentObject(dogViewModel)
         }
     }
 }
