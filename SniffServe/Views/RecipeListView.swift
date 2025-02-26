@@ -22,22 +22,41 @@ struct RecipeListView: View {
         ) {
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    ForEach(viewModel.recipes(forDog: dog), id: \.id) { recipe in
-                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                            RecipeCardView(recipe: recipe, deleteAction: {
-                                if let index = viewModel.recipes.firstIndex(where: { $0.id == recipe.id }) {
-                                    viewModel.deleteRecipes(at: IndexSet(integer: index))
-                                }
-                            })
+                    let dogRecipes = viewModel.recipes.filter { dog.recipeIDs.contains($0.id) }
+
+                    if dogRecipes.isEmpty {
+                        Text("No recipes found for \(dog.name)")
+                            .font(.headline)
+                            .padding()
+                    } else {
+                        ForEach(dogRecipes, id: \.id) { recipe in
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                                RecipeCardView(recipe: recipe, deleteAction: {
+                                    if let index = viewModel.recipes.firstIndex(where: { $0.id == recipe.id }) {
+                                        viewModel.deleteRecipes(at: IndexSet(integer: index))
+                                    }
+                                })
+                            }
                         }
                     }
                 }
                 .padding(.top, 10)
             }
+            .onAppear {
+                // ✅ Ensure dog has the correct recipe IDs on view load
+                var updatedDog = dog
+                updatedDog.recipeIDs = viewModel.recipes.map { $0.id }
+
+                print("\n🐶 Dog Data Updated in RecipeListView:")
+                print("Name: \(updatedDog.name)")
+                print("Recipe IDs: \(updatedDog.recipeIDs)")
+                print("Matched Recipes: \(viewModel.recipes.filter { updatedDog.recipeIDs.contains($0.id) }.map { $0.title })\n")
+            }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
+
 
 struct RecipeListView_Previews: PreviewProvider {
     static var previews: some View {

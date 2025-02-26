@@ -12,42 +12,42 @@ struct PetProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
     @State private var showingChat = false
-    @StateObject private var viewModel = RecipeViewModel()
+    @EnvironmentObject var viewModel: RecipeViewModel // ✅ Ensure this is shared
 
     var body: some View {
-        NavigationStack {
-            BaseView(
-                screenTitle: "Dog Profile",
-                topLeftIcon: "chevron.backward",
-                topLeftAction: { dismiss() },
-                topRightIcon: "pencil",
-                botLeftIcon: "book.closed.fill",
-                botLeftAction: { showingRecipes = true },
-                botRightIcon: "bubble",
-                botRightAction: { showingChat = true }
-            ) {
-                PetView(dog: dog)
-            }
-            .navigationDestination(isPresented: $showingRecipes) {
-                let updatedDog = Dog(
-                    name: dog.name,
-                    breed: dog.breed,
-                    age_years: dog.age_years,
-                    gender: dog.gender,
-                    chronic_conditions: dog.chronic_conditions,
-                    recipeIDs: viewModel.recipes.map { $0.id }
-                )
-                RecipeListView(dog: updatedDog)
-                    .environmentObject(viewModel)
-            }
-            .navigationDestination(isPresented: $showingChat) {
-                ChatView(dog: dog)
-                    .environmentObject(viewModel)
-                    .navigationBarBackButtonHidden(true)
-            }
+        BaseView(
+            screenTitle: "Dog Profile",
+            topLeftIcon: "chevron.backward",
+            topLeftAction: { dismiss() },
+            topRightIcon: "pencil",
+            botLeftIcon: "book.closed.fill",
+            botLeftAction: { showingRecipes = true },
+            botRightIcon: "bubble",
+            botRightAction: { showingChat = true }
+        ) {
+            PetView(dog: dog)
+        }
+        .navigationDestination(isPresented: $showingRecipes) {
+            let updatedDog = Dog( // ✅ Ensure correct recipe IDs are passed
+                name: dog.name,
+                breed: dog.breed,
+                age_years: dog.age_years,
+                age_months: dog.age_months,
+                gender: dog.gender,
+                chronic_conditions: dog.chronic_conditions,
+                recipeIDs: viewModel.recipes.map { $0.id } // ✅ Assign correct recipe IDs
+            )
+            RecipeListView(dog: updatedDog)
+                .environmentObject(viewModel)
+        }
+        .navigationDestination(isPresented: $showingChat) {
+            ChatView(dog: dog)
+                .environmentObject(viewModel)
+                .environmentObject(DogViewModel())
         }
     }
 }
+
 
 struct PetView: View {
     var dog: Dog
@@ -169,14 +169,16 @@ struct PetProfileView_Previews: PreviewProvider {
         let viewModel = RecipeViewModel()
         let sampleRecipes = viewModel.recipes.map { $0.id }
 
-        PetProfileView(dog: Dog(
-            name: "Daisy",
-            breed: "French Bulldog",
-            age_years: 14,
-            gender: "Female",
-            chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"],
-            recipeIDs: sampleRecipes
-        ))
-        .environmentObject(viewModel)
+        return NavigationStack {
+            PetProfileView(dog: Dog(
+                name: "Daisy",
+                breed: "French Bulldog",
+                age_years: 14,
+                gender: "Female",
+                chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"],
+                recipeIDs: sampleRecipes
+            ))
+            .environmentObject(viewModel) // ✅ Ensure viewModel is passed
+        }
     }
 }

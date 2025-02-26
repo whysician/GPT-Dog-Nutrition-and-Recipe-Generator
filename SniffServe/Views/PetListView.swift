@@ -7,19 +7,23 @@
 
 import SwiftUI
 
-
 struct PetListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    
+    @StateObject var recipeViewModel = RecipeViewModel() // ✅ Ensure RecipeViewModel exists
+
     var body: some View {
-        BaseView(
-            topLeftIcon: "chevron.backward",
-            topRightIcon: "plus"
-        ) {
-            MainBodyView()
+        NavigationStack {
+            BaseView(
+                topLeftIcon: "chevron.backward",
+                topRightIcon: "plus"
+            ) {
+                MainBodyView()
+            }
         }
+        .environmentObject(recipeViewModel) // ✅ Pass RecipeViewModel globally
     }
 }
+
 
 
 struct MainBodyView: View {
@@ -43,11 +47,14 @@ struct MainBodyView: View {
 
 struct DogListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    
+    @EnvironmentObject var recipeViewModel: RecipeViewModel // ✅ Get RecipeViewModel
+
     var body: some View {
         VStack {
             ForEach(dogViewModel.dogs, id:\.self) { dog in
-                NavigationLink(destination: PetProfileView(dog: dog)) {
+                NavigationLink(destination: PetProfileView(dog: dog)
+                    .environmentObject(recipeViewModel) // ✅ Pass RecipeViewModel
+                ) {
                     DogCardView(dog: dog, deleteAction: {
                         if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
                             dogViewModel.deleteDog(at: IndexSet(integer: index))
@@ -55,7 +62,6 @@ struct DogListView: View {
                     })
                 }
                 .padding(.bottom, 10)
-                
             }
         }
     }
