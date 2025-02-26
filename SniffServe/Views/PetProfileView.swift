@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PetProfileView: View {
-    var dog: Dog
+    @EnvironmentObject var dogViewModel: DogViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
     @State private var showingChat = false
-    @EnvironmentObject var viewModel: RecipeViewModel // ✅ Ensure this is shared
+    var dog: Dog
 
     var body: some View {
         BaseView(
@@ -28,26 +28,17 @@ struct PetProfileView: View {
             PetView(dog: dog)
         }
         .navigationDestination(isPresented: $showingRecipes) {
-            let updatedDog = Dog( // ✅ Ensure correct recipe IDs are passed
-                name: dog.name,
-                breed: dog.breed,
-                age_years: dog.age_years,
-                age_months: dog.age_months,
-                gender: dog.gender,
-                chronic_conditions: dog.chronic_conditions,
-                recipeIDs: viewModel.recipes.map { $0.id } // ✅ Assign correct recipe IDs
-            )
-            RecipeListView(dog: updatedDog)
-                .environmentObject(viewModel)
+            if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
+                RecipeListView(dog: dogViewModel.dogs[index]) // ✅ Pass latest dog object
+                    .environmentObject(dogViewModel)
+            }
         }
         .navigationDestination(isPresented: $showingChat) {
             ChatView(dog: dog)
-                .environmentObject(viewModel)
-                .environmentObject(DogViewModel())
+                .environmentObject(dogViewModel)
         }
     }
 }
-
 
 struct PetView: View {
     var dog: Dog
@@ -55,15 +46,9 @@ struct PetView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                if UIImage(named: "Doge") != nil {
-                    CircleImage(imageName: "Doge", size: 200)
-                        .padding(.top, 35)
-                        .padding(.bottom, 30)
-                } else {
-                    CircleImage(size: 100)
-                        .padding(.top, 35)
-                        .padding(.bottom, 30)
-                }
+                CircleImage(size: 200)
+                    .padding(.top, 35)
+                    .padding(.bottom, 30)
 
                 VStack {
                     Text(dog.name)
@@ -79,7 +64,7 @@ struct PetView: View {
                 HStack {
                     ZStack {
                         Rectangle()
-                            .fill(Color(hue: 0.542, saturation: 0.701, brightness: 0.973).opacity(0.3))
+                            .fill(Color.blue.opacity(0.3))
                             .frame(height: 120)
                             .cornerRadius(20)
 
@@ -99,7 +84,7 @@ struct PetView: View {
 
                     ZStack {
                         Rectangle()
-                            .fill(Color.red).opacity(0.3)
+                            .fill(Color.red.opacity(0.3))
                             .frame(height: 120)
                             .cornerRadius(20)
 
@@ -132,29 +117,20 @@ struct PetView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         ZStack {
-                            VStack(alignment: .leading, spacing: 10){
-                                ForEach(dog.chronic_conditions, id: \.self) { data in
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach(dog.chronic_conditions, id: \.self) { condition in
                                     HStack(alignment: .top) {
-                                        Text("\u{2022}")
+                                        Text("•")
                                             .font(.system(size: 17))
-                                        Text(data)
+                                        Text(condition)
                                     }
                                 }
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical, 10)
-                            .padding(.leading, 10)
-                            .padding(.trailing, 30)
+                            .padding()
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.top, 0)
-                        .frame(maxWidth: .infinity)
-                        .background(alignment: .bottom) {
-                            Color.orange.opacity(0.3)
-                                .cornerRadius(10)
-                        }
+                        .background(Color.orange.opacity(0.3))
+                        .cornerRadius(10)
                         .padding(.horizontal)
-                        .padding(.bottom, 10)
                     }
                 }
             }
@@ -166,19 +142,17 @@ struct PetView: View {
 
 struct PetProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = RecipeViewModel()
-        let sampleRecipes = viewModel.recipes.map { $0.id }
+        let dogViewModel = DogViewModel()
 
         return NavigationStack {
-            PetProfileView(dog: Dog(
+            PetProfileView(dog: dogViewModel.dogs.first ?? Dog(
                 name: "Daisy",
                 breed: "French Bulldog",
                 age_years: 14,
                 gender: "Female",
-                chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"],
-                recipeIDs: sampleRecipes
+                chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"]
             ))
-            .environmentObject(viewModel) // ✅ Ensure viewModel is passed
+            .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is passed
         }
     }
 }

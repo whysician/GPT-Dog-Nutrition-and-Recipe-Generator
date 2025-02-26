@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChatView: View {
     @StateObject private var viewModel = OpenAIViewModel()
-    @EnvironmentObject var recipeViewModel: RecipeViewModel
-    @EnvironmentObject var dogViewModel: DogViewModel // ✅ Add DogViewModel
+    @EnvironmentObject var dogViewModel: DogViewModel
     @Environment(\.dismiss) private var dismiss
     var dog: Dog
     @State private var showingSuccessAlert = false
@@ -65,20 +64,10 @@ struct ChatView: View {
             VStack(spacing: 20) {
                 if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
                     Button("Save Recipe") {
-                        recipeViewModel.addRecipe(recipe)
-
-                        // ✅ Correctly update the dog's recipes
-                        if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
-                            dogViewModel.dogs[index].recipeIDs.append(recipe.id)
-                        }
+                        dogViewModel.addRecipe(recipe, to: dog)
 
                         viewModel.showSaveRecipeOption = false
                         showingSuccessAlert = true
-
-                        // ✅ Debugging Output
-                        print("\n✅ Recipe Saved for \(dog.name)")
-                        print("Recipe Title: \(recipe.title)")
-                        print("Updated Dog Recipe IDs: \(dogViewModel.dogs.first(where: { $0.id == dog.id })?.recipeIDs ?? [])\n")
                     }
                     .padding()
                     .background(Color.blue)
@@ -108,10 +97,14 @@ struct ChatView: View {
     }
 }
 
+
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(dog: Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male"))
-            .environmentObject(RecipeViewModel())
-            .environmentObject(DogViewModel()) // ✅ Ensure DogViewModel is included
+        let dogViewModel = DogViewModel()
+
+        return NavigationStack {
+            ChatView(dog: dogViewModel.dogs.first ?? Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male"))
+                .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is included
+        }
     }
 }

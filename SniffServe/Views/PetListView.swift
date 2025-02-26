@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PetListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    @StateObject var recipeViewModel = RecipeViewModel() // ✅ Ensure RecipeViewModel exists
 
     var body: some View {
         NavigationStack {
@@ -20,25 +19,22 @@ struct PetListView: View {
                 MainBodyView()
             }
         }
-        .environmentObject(recipeViewModel) // ✅ Pass RecipeViewModel globally
     }
 }
 
-
-
 struct MainBodyView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    
+
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 30) {
                 CircleImage(size: 120)
                     .padding(.top, 35)
-                
+
                 Text("Your Dogs")
                     .font(.system(size: 35))
                     .padding(.bottom)
-                
+
                 DogListView()
             }
         }
@@ -47,13 +43,12 @@ struct MainBodyView: View {
 
 struct DogListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    @EnvironmentObject var recipeViewModel: RecipeViewModel // ✅ Get RecipeViewModel
 
     var body: some View {
         VStack {
-            ForEach(dogViewModel.dogs, id:\.self) { dog in
+            ForEach(dogViewModel.dogs, id: \.self) { dog in
                 NavigationLink(destination: PetProfileView(dog: dog)
-                    .environmentObject(recipeViewModel) // ✅ Pass RecipeViewModel
+                    .environmentObject(dogViewModel) // ✅ Ensure PetProfileView receives DogViewModel
                 ) {
                     DogCardView(dog: dog, deleteAction: {
                         if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
@@ -67,10 +62,13 @@ struct DogListView: View {
     }
 }
 
-
 struct PetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PetListView()
+        let dogViewModel = DogViewModel()
+
+        return NavigationStack {
+            PetListView()
+                .environmentObject(dogViewModel) // ✅ Ensure DogViewModel is included
+        }
     }
 }
-
