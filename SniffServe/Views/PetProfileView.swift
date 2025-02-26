@@ -46,9 +46,15 @@ struct PetView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                CircleImage(size: 200)
-                    .padding(.top, 35)
-                    .padding(.bottom, 30)
+                if UIImage(named: "Doge") != nil {
+                    CircleImage(imageName: "Doge", size: 200)
+                        .padding(.top, 35)
+                        .padding(.bottom, 30)
+                } else {
+                    CircleImage(size: 100)
+                        .padding(.top, 35)
+                        .padding(.bottom, 30)
+                }
 
                 VStack {
                     Text(dog.name)
@@ -64,7 +70,7 @@ struct PetView: View {
                 HStack {
                     ZStack {
                         Rectangle()
-                            .fill(Color.blue.opacity(0.3))
+                            .fill(Color(hue: 0.542, saturation: 0.701, brightness: 0.973).opacity(0.3))
                             .frame(height: 120)
                             .cornerRadius(20)
 
@@ -84,7 +90,7 @@ struct PetView: View {
 
                     ZStack {
                         Rectangle()
-                            .fill(Color.red.opacity(0.3))
+                            .fill(Color.red).opacity(0.3)
                             .frame(height: 120)
                             .cornerRadius(20)
 
@@ -117,20 +123,29 @@ struct PetView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         ZStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                ForEach(dog.chronic_conditions, id: \.self) { condition in
+                            VStack(alignment: .leading, spacing: 10){
+                                ForEach(dog.chronic_conditions, id: \.self) { data in
                                     HStack(alignment: .top) {
-                                        Text("•")
+                                        Text("\u{2022}")
                                             .font(.system(size: 17))
-                                        Text(condition)
+                                        Text(data)
                                     }
                                 }
                             }
-                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 10)
+                            .padding(.trailing, 30)
                         }
-                        .background(Color.orange.opacity(0.3))
-                        .cornerRadius(10)
+                        .padding(.horizontal, 10)
+                        .padding(.top, 0)
+                        .frame(maxWidth: .infinity)
+                        .background(alignment: .bottom) {
+                            Color.orange.opacity(0.3)
+                                .cornerRadius(10)
+                        }
                         .padding(.horizontal)
+                        .padding(.bottom, 10)
                     }
                 }
             }
@@ -156,3 +171,4 @@ struct PetProfileView_Previews: PreviewProvider {
         }
     }
 }
+

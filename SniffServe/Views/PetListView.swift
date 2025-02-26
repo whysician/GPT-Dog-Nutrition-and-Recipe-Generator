@@ -11,13 +11,11 @@ struct PetListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
 
     var body: some View {
-        NavigationStack {
             BaseView(
                 topLeftIcon: "chevron.backward",
                 topRightIcon: "plus"
             ) {
                 MainBodyView()
-            }
         }
     }
 }
