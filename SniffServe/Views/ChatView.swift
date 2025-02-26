@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ChatView: View {
     @StateObject private var viewModel = OpenAIViewModel()
-    @EnvironmentObject var recipeViewModel: RecipeViewModel
-    @State private var selectedDog = Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male")
+    @EnvironmentObject var dogViewModel: DogViewModel
+    @Environment(\.dismiss) private var dismiss
+    var dog: Dog
+    @State private var showingSuccessAlert = false
 
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button(action: {}) {
+                Button(action: { dismiss() }) {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(.black)
                         .font(.title)
@@ -24,7 +26,7 @@ struct ChatView: View {
 
                 Spacer()
 
-                Text("Chat with AI")
+                Text("Chat with AI for \(dog.name)")
                     .font(.title)
                     .foregroundColor(.black)
 
@@ -62,8 +64,10 @@ struct ChatView: View {
             VStack(spacing: 20) {
                 if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
                     Button("Save Recipe") {
-                        recipeViewModel.addRecipe(recipe)
+                        dogViewModel.addRecipe(recipe, to: dog)
+
                         viewModel.showSaveRecipeOption = false
+                        showingSuccessAlert = true
                     }
                     .padding()
                     .background(Color.blue)
@@ -73,7 +77,7 @@ struct ChatView: View {
                 }
 
                 Button("Generate Recipe") {
-                    viewModel.generateRecipeForDog(dog: selectedDog)
+                    viewModel.generateRecipeForDog(dog: dog)
                 }
                 .padding()
                 .background(Color.orange)
@@ -86,11 +90,21 @@ struct ChatView: View {
             .background(Color.green)
             .edgesIgnoringSafeArea(.bottom)
         }
+        .alert(isPresented: $showingSuccessAlert) {
+            Alert(title: Text("Success"), message: Text("Recipe saved successfully!"), dismissButton: .default(Text("OK")))
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
+
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView().environmentObject(RecipeViewModel())
+        let dogViewModel = DogViewModel()
+
+        return NavigationStack {
+            ChatView(dog: dogViewModel.dogs.first ?? Dog(name: "Buddy", breed: "Labrador", age_years: 3, gender: "Male"))
+                .environmentObject(dogViewModel)
+        }
     }
 }

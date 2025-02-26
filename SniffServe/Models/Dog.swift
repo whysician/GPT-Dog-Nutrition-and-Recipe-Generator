@@ -15,4 +15,5 @@ struct Dog: Identifiable, Hashable {
     var age_months: Int = 0
     var gender: String
     var chronic_conditions: [String] = []
+    var recipes: [Recipe] = []
 }
