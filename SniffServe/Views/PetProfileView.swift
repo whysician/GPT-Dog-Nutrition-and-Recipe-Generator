@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PetProfileView: View {
-    var dog: Dog
+    @State var dog: Dog
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -17,7 +17,7 @@ struct PetProfileView: View {
             topLeftIcon: "chevron.backward",
             topLeftAction: {  dismiss() },
             topRightIcon: "pencil",
-            // topRightView: EditPetView(dog: Dog), // In EditView, initialize a dog variable to access passed dog
+            topRightView: EditPetView(dog: $dog), // In EditView, initialize a dog variable to access passed dog
             botLeftIcon: "book.closed.fill",
             botRightIcon: "bubble"
         ) {
@@ -146,7 +146,6 @@ struct PetView: View {
             }
             .padding(.horizontal, 15)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

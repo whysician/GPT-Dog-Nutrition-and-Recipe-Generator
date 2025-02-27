@@ -13,18 +13,12 @@ struct DogCardView: View {
     
     var body: some View {
         HStack {
-            if UIImage(named: "Doge") != nil {
-                CircleImage(imageName: "Doge", size: 200)
-                    .padding(.top, 35)
-                    .padding(.bottom, 30)
-                    .padding(.leading, 10)
-            } else {
-                CircleImage(size: 50)
-                    .foregroundStyle(.black)
-                    .padding(.top, 35)
-                    .padding(.bottom, 30)
-                    .padding(.leading, 25)
-            }
+            CircleImage(size: 50)
+                .foregroundStyle(.black)
+                .padding(.top, 35)
+                .padding(.bottom, 30)
+                .padding(.leading, 25)
+
             
             Text(dog.name)
                 .font(.system(size: 22, weight: .semibold))
