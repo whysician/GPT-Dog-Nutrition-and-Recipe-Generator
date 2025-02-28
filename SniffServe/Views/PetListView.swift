@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct PetListView: View {
     var body: some View {
         BaseView(
@@ -18,18 +17,17 @@ struct PetListView: View {
     }
 }
 
-
 struct MainBodyView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 30) {
                 CircleImage(size: 120)
                     .padding(.top, 35)
-                
+
                 Text("Your Dogs")
                     .font(.system(size: 35))
                     .padding(.bottom)
-                
+
                 DogListView()
             }
         }
@@ -38,7 +36,7 @@ struct MainBodyView: View {
 
 struct DogListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
-    
+
     var body: some View {
         VStack {
             ForEach(dogViewModel.dogs) { dog in
@@ -50,16 +48,14 @@ struct DogListView: View {
                     })
                 }
                 .padding(.bottom, 10)
-                
             }
         }
     }
 }
 
-
 struct PetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PetListView()
+        return NavigationStack {
+            PetListView()
     }
 }
-
