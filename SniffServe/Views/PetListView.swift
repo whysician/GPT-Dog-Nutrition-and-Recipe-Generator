@@ -57,5 +57,6 @@ struct PetListView_Previews: PreviewProvider {
     static var previews: some View {
         return NavigationStack {
             PetListView()
+        }
     }
 }
