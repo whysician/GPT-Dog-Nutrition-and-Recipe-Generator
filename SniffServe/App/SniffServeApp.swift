@@ -11,6 +11,7 @@ import SwiftData
 @main
 struct SniffServeApp: App {
     @State var showLaunchView: Bool = true
+    @StateObject var dogViewModel = DogViewModel()
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -29,7 +30,7 @@ struct SniffServeApp: App {
         WindowGroup {
             ZStack {
                 PetListView()
-                
+                    .environmentObject(dogViewModel)
                 ZStack {
                     if showLaunchView {
                         LaunchView(showLaunchView: $showLaunchView)

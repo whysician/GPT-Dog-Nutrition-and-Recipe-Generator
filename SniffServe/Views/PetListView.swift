@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct PetListView: View {
+    @EnvironmentObject var dogViewModel: DogViewModel
+    
     var body: some View {
         BaseView(
             topRightIcon: "plus"
         ) {
-            MainBodyView()
+            MainBodyView().environmentObject(dogViewModel)
         }
     }
 }

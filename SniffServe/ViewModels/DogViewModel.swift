@@ -14,8 +14,20 @@ class DogViewModel: ObservableObject {
         loadSampleDogs()
     }
 
-    func addDog(_ dog: Dog) {
-        dogs.append(dog)
+    func addDog(name: String, breed: String, ageYears: Int, ageMonths: Int, gender: String, conditions: [String]) {
+        let newDog = Dog(
+            name: name,
+            breed: breed,
+            age_years: ageYears,
+            age_months: ageMonths,
+            gender: gender,
+            chronic_conditions: conditions
+        )
+        DispatchQueue.main.async {
+            self.dogs.append(newDog)
+            print("New pet added: \(newDog)")
+        }
+
     }
 
     func deleteDog(at offsets: IndexSet) {
