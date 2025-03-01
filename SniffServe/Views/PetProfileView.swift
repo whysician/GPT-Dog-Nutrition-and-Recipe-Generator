@@ -12,7 +12,7 @@ struct PetProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
     @State private var showingChat = false
-    var dog: Dog
+    @State var dog: Dog
 
     var body: some View {
         BaseView(
@@ -20,6 +20,7 @@ struct PetProfileView: View {
             topLeftIcon: "chevron.backward",
             topLeftAction: { dismiss() },
             topRightIcon: "pencil",
+            topRightView: EditPetView(dog: $dog), // In EditView, initialize a dog variable to access passed dog
             botLeftIcon: "book.closed.fill",
             botLeftAction: { showingRecipes = true },
             botRightIcon: "bubble",
@@ -151,7 +152,6 @@ struct PetView: View {
             }
             .padding(.horizontal, 15)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct SniffServeApp: App {
+    @State var showLaunchView: Bool = true
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +27,17 @@ struct SniffServeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                PetListView()
+                
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .zIndex(2.0)
+            }
         }
         .modelContainer(sharedModelContainer)
     }

@@ -138,6 +138,7 @@ struct BaseView<Content: View, TopRightView: View>: View {
             }
         }
         .environmentObject(dogViewModel)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
