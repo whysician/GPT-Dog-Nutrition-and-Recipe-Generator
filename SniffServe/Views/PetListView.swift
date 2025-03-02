@@ -56,5 +56,6 @@ struct DogListView: View {
 struct PetListView_Previews: PreviewProvider {
     static var previews: some View {
         PetListView()
+            .environmentObject(DogViewModel())
     }
 }

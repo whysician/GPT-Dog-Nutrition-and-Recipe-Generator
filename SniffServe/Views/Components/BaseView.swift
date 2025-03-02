@@ -57,7 +57,7 @@ struct BaseView<Content: View, TopRightView: View>: View {
     }
     
     @State private var showView = false
-    @ObservedObject var dogViewModel = DogViewModel()
+    
     
     var body: some View {
         NavigationStack {
@@ -137,7 +137,6 @@ struct BaseView<Content: View, TopRightView: View>: View {
                 .background(.green)
             }
         }
-        .environmentObject(dogViewModel)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -145,7 +144,6 @@ struct BaseView<Content: View, TopRightView: View>: View {
 struct BaseView_Previews: PreviewProvider {
     static var previews: some View {
         BaseView() {
-            
         }
     }
 }
