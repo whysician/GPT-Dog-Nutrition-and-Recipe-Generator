@@ -18,6 +18,7 @@ struct PetInputFormView: View {
     var formTitle: String
     var petPhoto: String
     var petPhotoOpacity: Double = 1.0
+    var conditionsPlaceholder: String
 
     var body: some View {
         BaseView(
@@ -59,7 +60,7 @@ struct PetInputFormView: View {
                     CustomTextField(label: "Age", text: $petAge, keyboardType: .numberPad, placeholder: "e.g. 3")
                     CustomTextField(label: "Breed", text: $petBreed, placeholder: "e.g. Shiba Inu")
                     CustomTextField(label: "Gender", text: $petGender, placeholder: "e.g. Male")
-                    CustomMultilineTextField(label: "Chronic Conditions", text: $petConditions, placeholder: "e.g. •  Hip Dysplasia")
+                    CustomMultilineTextField(label: "Chronic Conditions", text: $petConditions, placeholder: conditionsPlaceholder)
                 }
                 .padding(.horizontal, 20)
             }
@@ -149,6 +150,7 @@ struct CustomMultilineTextField: View {
         onSave: {},
         onCancel: {},
         formTitle: "<Title Name>",
-        petPhoto: "add photo"
+        petPhoto: "add photo",
+        conditionsPlaceholder: "<Chronic condition inputs goes here>"
     )
 }

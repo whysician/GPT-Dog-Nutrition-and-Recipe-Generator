@@ -7,7 +7,6 @@ import SwiftUI
 
 struct EditPetView: View {
     @Binding var dog: Dog
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel: DogViewModel
 
     @State private var petName: String = ""
@@ -15,6 +14,7 @@ struct EditPetView: View {
     @State private var petBreed: String = ""
     @State private var petGender: String = ""
     @State private var petConditions: String = ""
+    @State private var navigateToList = false
 
     init(dog: Binding<Dog>) {
         self._dog = dog
@@ -28,30 +28,40 @@ struct EditPetView: View {
     }
 
     var body: some View {
-        PetInputFormView(
-            petName: $petName,
-            petAge: $petAge,
-            petBreed: $petBreed,
-            petGender: $petGender,
-            petConditions: $petConditions,
-            onSave: {
-                if let index = viewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
-                    viewModel.dogs[index].name = petName
-                    viewModel.dogs[index].age_years = Int(petAge) ?? 0
-                    viewModel.dogs[index].breed = petBreed
-                    viewModel.dogs[index].gender = petGender
-                    viewModel.dogs[index].chronic_conditions = petConditions
-                        .split(separator: "\n")
-                        .map { $0.replacingOccurrences(of: "• ", with: "").trimmingCharacters(in: .whitespaces) }
-                    
-                    dismiss()
-                }
-            },
-            onCancel: { dismiss() },
-            formTitle: "Edit Pet Profile",
-            petPhoto: "edit photo",
-            petPhotoOpacity: 0.7
-        )
+        NavigationStack {
+            PetInputFormView(
+                petName: $petName,
+                petAge: $petAge,
+                petBreed: $petBreed,
+                petGender: $petGender,
+                petConditions: $petConditions,
+                onSave: {
+                    if let index = viewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
+                        viewModel.dogs[index].name = petName
+                        viewModel.dogs[index].age_years = Int(petAge) ?? 0
+                        viewModel.dogs[index].breed = petBreed
+                        viewModel.dogs[index].gender = petGender
+                        viewModel.dogs[index].chronic_conditions = petConditions
+                            .split(separator: "\n")
+                            .map { $0.replacingOccurrences(of: "• ", with: "").trimmingCharacters(in: .whitespaces) }
+                        
+                        print("Pet info updated: \(petName), Age: \(petAge), Breed: \(petBreed), Gender: \(petGender), Conditions: \(viewModel.dogs[index].chronic_conditions)")
+                        navigateToList = true
+                    }
+                },
+                onCancel: {
+                    print("Edit pet canceled!")
+                    navigateToList = true
+                },
+                formTitle: "Edit Pet Profile",
+                petPhoto: "edit photo",
+                petPhotoOpacity: 0.7,
+                conditionsPlaceholder: "Input a condition and press enter key to add a new one, or separate conditions."
+            )
+            .navigationDestination(isPresented: $navigateToList) {
+                PetListView().environmentObject(viewModel)
+            }
+        }
         .onAppear {
             petName = dog.name
             petAge = "\(dog.age_years)"
