@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct PetListView: View {
-    @EnvironmentObject var dogViewModel: DogViewModel
-    
     var body: some View {
         BaseView(
             topRightIcon: "plus"
         ) {
-            MainBodyView().environmentObject(dogViewModel)
+            MainBodyView()
         }
     }
 }
@@ -57,8 +55,6 @@ struct DogListView: View {
 
 struct PetListView_Previews: PreviewProvider {
     static var previews: some View {
-        return NavigationStack {
-            PetListView()
-        }
+        PetListView()
     }
 }
