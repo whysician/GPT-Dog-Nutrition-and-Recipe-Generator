@@ -159,16 +159,14 @@ struct PetProfileView_Previews: PreviewProvider {
     static var previews: some View {
         let dogViewModel = DogViewModel()
 
-        return NavigationStack {
-            PetProfileView(dog: dogViewModel.dogs.first ?? Dog(
-                name: "Daisy",
-                breed: "French Bulldog",
-                age_years: 14,
-                gender: "Female",
-                chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"]
-            ))
-            .environmentObject(dogViewModel)
-        }
+        PetProfileView(dog: dogViewModel.dogs.first ?? Dog(
+            name: "Daisy",
+            breed: "French Bulldog",
+            age_years: 14,
+            gender: "Female",
+            chronic_conditions: ["Blind in one eye", "Kidney issues", "Trouble walking"]
+        ))
+        .environmentObject(dogViewModel)
     }
 }
 

@@ -30,16 +30,14 @@ struct SniffServeApp: App {
         WindowGroup {
             ZStack {
                 PetListView()
-                    .environmentObject(dogViewModel)
-                ZStack {
-                    if showLaunchView {
-                        LaunchView(showLaunchView: $showLaunchView)
-                            .transition(.move(edge: .leading))
-                    }
+                
+                if showLaunchView {
+                    LaunchView(showLaunchView: $showLaunchView)
+                        .transition(.move(edge: .leading))
                 }
-                .zIndex(2.0)
             }
+            .modelContainer(sharedModelContainer)
+            .environmentObject(dogViewModel)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
