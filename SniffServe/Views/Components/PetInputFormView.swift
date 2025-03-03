@@ -12,6 +12,8 @@ struct PetInputFormView: View {
     @Binding var petBreed: String
     @Binding var petGender: String
     @Binding var petConditions: String
+    @Binding var petImage: UIImage?
+    @State private var showImagePicker = false
 
     var onSave: () -> Void
     var onCancel: () -> Void
@@ -33,26 +35,38 @@ struct PetInputFormView: View {
             botRightIcon: "xmark",
             botRightAction: onCancel
         ) {
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
                 
                 // Pet picture section
-                VStack {
+                Button(action: { showImagePicker.toggle() }) {
                     ZStack {
                         Circle()
                             .fill(Color(.systemTeal).opacity(0.3))
                             .frame(width: 100, height: 100)
-                        
-                        Image(systemName: "photo.on.rectangle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.black)
+
+                        if let petImage = petImage {
+                            Image(uiImage: petImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                        } else {
+                            Image(systemName: "photo.on.rectangle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 45, height: 45)
+                                .foregroundColor(.black)
+                        }
                     }
-                    Text(petPhoto)
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .opacity(petPhotoOpacity)
                 }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(selectedImage: $petImage)
+                }
+                Text(petPhoto)
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .opacity(petPhotoOpacity)
 
                 // Input fields section
                 VStack(alignment: .leading, spacing: 16) {
@@ -140,13 +154,15 @@ struct CustomMultilineTextField: View {
     @Previewable @State var previewPetBreed = ""
     @Previewable @State var previewPetGender = ""
     @Previewable @State var previewPetConditions = ""
+    @Previewable @State var previewPetImage: UIImage? = nil
 
-    return PetInputFormView(
+    PetInputFormView(
         petName: $previewPetName,
         petAge: $previewPetAge,
         petBreed: $previewPetBreed,
         petGender: $previewPetGender,
         petConditions: $previewPetConditions,
+        petImage: $previewPetImage,
         onSave: {},
         onCancel: {},
         formTitle: "<Title Name>",
