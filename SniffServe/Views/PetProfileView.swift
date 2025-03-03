@@ -80,10 +80,7 @@ struct PetView: View {
                             .fontWeight(.semibold)
                             .font(.system(size: 20))
 
-                        Text("\(dog.age_years) years,")
-                            .font(.system(size: 20))
-                        Text("\(dog.age_months) months")
-                            .offset(y: 25)
+                        Text("\(dog.age_years) years")
                             .font(.system(size: 20))
                     }
 
