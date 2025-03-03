@@ -10,7 +10,8 @@ import SwiftUI
 struct PetListView: View {
     var body: some View {
         BaseView(
-            topRightIcon: "plus"
+            topRightIcon: "plus",
+            topRightView: AddPetView()
         ) {
             MainBodyView()
         }
