@@ -15,6 +15,7 @@ struct AddPetView: View {
     @State private var petGender = ""
     @State private var petConditions = ""
     @State private var navigateToList = false
+    @State private var petImage: UIImage? = nil
 
     var body: some View {
         NavigationStack {
@@ -24,6 +25,7 @@ struct AddPetView: View {
                 petBreed: $petBreed,
                 petGender: $petGender,
                 petConditions: $petConditions,
+                petImage: $petImage,
                 onSave: {
                     let ageYears = Int(petAge) ?? 0
                     let conditionsList = petConditions
@@ -50,7 +52,7 @@ struct AddPetView: View {
                 formTitle: "Create Pet Profile",
                 petPhoto: "add photo",
                 petPhotoOpacity: 0.7,
-                conditionsPlaceholder: "Enter conditions separated by commas (,).\n e.g. Hip Dysplasia, Allergies, etc."
+                conditionsPlaceholder: "Enter conditions separated by commas (,).\n\n e.g. Hip Dysplasia, Allergies, etc."
             )
             .navigationDestination(isPresented: $navigateToList) {
                 PetListView().environmentObject(dogViewModel)

@@ -89,6 +89,7 @@ struct BaseView<Content: View, TopRightView: View>: View {
                     Spacer()
                     
                     Button {
+                        topRightAction()
                         showView.toggle()
                     } label: {
                         Image(systemName: topRightIcon ?? "")
