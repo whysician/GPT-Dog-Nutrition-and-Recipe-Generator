@@ -10,8 +10,7 @@ import SwiftUI
 struct PetListView: View {
     var body: some View {
         BaseView(
-            topRightIcon: "plus",
-            topRightView: AddPetView()
+            topRightIcon: "plus"
         ) {
             MainBodyView()
         }
@@ -49,6 +48,11 @@ struct DogListView: View {
                     })
                 }
                 .padding(.bottom, 10)
+            }
+            
+            if dogViewModel.dogs.count == 0 {
+                Text("No dogs found")
+                    .font(.title)
             }
         }
     }
