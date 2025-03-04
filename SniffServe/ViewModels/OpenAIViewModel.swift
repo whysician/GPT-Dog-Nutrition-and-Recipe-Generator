@@ -15,28 +15,31 @@ class OpenAIViewModel: ObservableObject {
     @Published var showSaveRecipeOption = false
 
     func sendMessage() {
-        sendChatMessage(apiKey: ProcessInfo.processInfo.environment["OPENAI_KEY"] ?? "defaultKey", message: userInput) { [weak self] reply in
+        guard !userInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+
+        let userMessage = ChatMessage(role: "user", content: userInput)
+        messages.append(userMessage)
+
+        sendToOpenAI(messages) { [weak self] response in
             DispatchQueue.main.async {
-                if let self = self, let reply = reply {
-                    let userMessage = ChatMessage(role: "user", content: self.userInput)
-                    let aiMessage = ChatMessage(role: "ai", content: reply)
-                    self.messages.append(userMessage)
-                    self.messages.append(aiMessage)
-                    self.userInput = ""
+                if let response = response {
+                    self?.messages.append(ChatMessage(role: "assistant", content: response))
                 }
+                self?.userInput = ""
             }
         }
     }
 
     func generateRecipeForDog(dog: Dog) {
         let dogData = """
-        Generate a detailed recipe for a dog with the following characteristics:
+        Generate a detailed recipe with a unique title for a dog with these details:
         Name: \(dog.name)
         Breed: \(dog.breed)
-        Age: \(dog.age_years) years and \(dog.age_months) months
+        Age: \(dog.age_years) years, \(dog.age_months) months
         Gender: \(dog.gender)
         Chronic Conditions: \(dog.chronic_conditions.joined(separator: ", "))
-        Please format the recipe as follows:
+
+        Format the response as:
         Title: [Recipe Title]
         Ingredients:
         - Ingredient 1
@@ -45,54 +48,80 @@ class OpenAIViewModel: ObservableObject {
         - Step 1
         - Step 2
         """
-        sendChatMessage(apiKey: ProcessInfo.processInfo.environment["OPENAI_KEY"] ?? "defaultKey", message: dogData) { [weak self] reply in
-            DispatchQueue.main.async {
-                if let self = self, let reply = reply {
-                    let aiMessage = ChatMessage(role: "ai", content: reply)
-                    self.messages.append(aiMessage)
 
-                    self.lastGeneratedRecipe = self.parseRecipeFromResponse(reply)
-                    self.showSaveRecipeOption = self.lastGeneratedRecipe != nil
+        sendToOpenAI(messages + [ChatMessage(role: "user", content: dogData)]) { [weak self] response in
+            DispatchQueue.main.async {
+                if let response = response {
+                    self?.messages.append(ChatMessage(role: "assistant", content: response))
+                    self?.lastGeneratedRecipe = self?.parseRecipeFromResponse(response)
+                    self?.showSaveRecipeOption = self?.lastGeneratedRecipe != nil
                 }
             }
         }
     }
 
-    private func sendChatMessage(apiKey: String, message: String, completion: @escaping (String?) -> Void) {
-        let url = URL(string: "https://api.openai.com/v1/chat/completions")!
-        let userMessage = ChatMessage(role: "user", content: message)
-        let requestBody = ChatRequest(model: "gpt-3.5-turbo", messages: [userMessage])
+    func sendDogStats(dog: Dog) {
+        let dogStatsMessage = """
+        The user has a dog with these details:
+        Name: \(dog.name)
+        Breed: \(dog.breed)
+        Age: \(dog.age_years) years, \(dog.age_months) months
+        Gender: \(dog.gender)
+        Chronic Conditions: \(dog.chronic_conditions.joined(separator: ", "))
+
+        Keep this information in mind for the conversation.
+        """
+
+        let userMessage = ChatMessage(role: "user", content: dogStatsMessage)
+        messages.append(userMessage)
+
+        sendToOpenAI(messages) { [weak self] response in
+            DispatchQueue.main.async {
+                if let response = response {
+                    self?.messages.append(ChatMessage(role: "assistant", content: response))
+                }
+            }
+        }
+    }
+
+    private func sendToOpenAI(_ chatHistory: [ChatMessage], completion: @escaping (String?) -> Void) {
+        let requestBody = ChatRequest(model: "gpt-3.5-turbo", messages: chatHistory)
 
         guard let jsonData = try? JSONEncoder().encode(requestBody) else {
+            print("Failed to encode request body")
             completion(nil)
             return
         }
 
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: URL(string: "https://api.openai.com/v1/chat/completions")!)
         request.httpMethod = "POST"
         request.httpBody = jsonData
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(ProcessInfo.processInfo.environment["OPENAI_KEY"] ?? "defaultKey")", forHTTPHeaderField: "Authorization")
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                print("Error making request: \(error)")
+                print("Request error: \(error.localizedDescription)")
                 completion(nil)
                 return
             }
 
             guard let data = data else {
+                print("No response data received")
                 completion(nil)
                 return
             }
 
-            if let decodedResponse = try? JSONDecoder().decode(OpenAIResponse.self, from: data) {
-                let reply = decodedResponse.choices.first?.message.content
-                completion(reply)
-            } else {
+            do {
+                let decodedResponse = try JSONDecoder().decode(OpenAIResponse.self, from: data)
+                completion(decodedResponse.choices.first?.message.content)
+            } catch {
+                print("Failed to decode response: \(error)")
+                print("Response Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
                 completion(nil)
             }
         }
+
         task.resume()
     }
 

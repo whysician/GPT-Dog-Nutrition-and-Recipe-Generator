@@ -93,6 +93,9 @@ struct ChatView: View {
         .alert(isPresented: $showingSuccessAlert) {
             Alert(title: Text("Success"), message: Text("Recipe saved successfully!"), dismissButton: .default(Text("OK")))
         }
+        .onAppear {
+            viewModel.sendDogStats(dog: dog)
+        }
         .navigationBarBackButtonHidden(true)
     }
 }
