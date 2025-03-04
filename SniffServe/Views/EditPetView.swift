@@ -15,6 +15,7 @@ struct EditPetView: View {
     @State private var petGender: String = ""
     @State private var petConditions: String = ""
     @State private var navigateToList = false
+    @State private var petImage: UIImage? = nil
 
     init(dog: Binding<Dog>) {
         self._dog = dog
@@ -35,6 +36,7 @@ struct EditPetView: View {
                 petBreed: $petBreed,
                 petGender: $petGender,
                 petConditions: $petConditions,
+                petImage: $petImage,
                 onSave: {
                     if let index = viewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
                         viewModel.dogs[index].name = petName

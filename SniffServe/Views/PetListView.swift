@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct PetListView: View {
+    @EnvironmentObject var dogViewModel: DogViewModel
+    @State private var showingAddPetView = false
+    
     var body: some View {
-        BaseView(
-            topRightIcon: "plus"
-        ) {
-            MainBodyView()
+        NavigationStack {
+            BaseView(
+                topRightIcon: "plus",
+                topRightAction: { showingAddPetView = true }
+            ) {
+                MainBodyView()
+            }
+            .navigationDestination(isPresented: $showingAddPetView) {
+                AddPetView()
+                    .environmentObject(dogViewModel)
+            }
         }
     }
 }
