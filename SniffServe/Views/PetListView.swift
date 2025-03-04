@@ -59,6 +59,11 @@ struct DogListView: View {
                 }
                 .padding(.bottom, 10)
             }
+            
+            if dogViewModel.dogs.count == 0 {
+                Text("No dogs found")
+                    .font(.title)
+            }
         }
     }
 }

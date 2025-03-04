@@ -46,6 +46,7 @@ struct EditPetView: View {
                         viewModel.dogs[index].chronic_conditions = petConditions
                             .split(separator: "\n")
                             .map { $0.replacingOccurrences(of: "• ", with: "").trimmingCharacters(in: .whitespaces) }
+                        viewModel.saveDogList()
                         
                         print("Pet info updated: \(petName), Age: \(petAge), Breed: \(petBreed), Gender: \(petGender), Conditions: \(viewModel.dogs[index].chronic_conditions)")
                         navigateToList = true

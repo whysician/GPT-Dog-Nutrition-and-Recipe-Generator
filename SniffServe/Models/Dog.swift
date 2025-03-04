@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Dog: Identifiable, Hashable {
-    let id = UUID()
+struct Dog: Identifiable, Hashable, Codable {
+    var id = UUID()
     var name: String
     var breed: String
     var age_years: Int = 0

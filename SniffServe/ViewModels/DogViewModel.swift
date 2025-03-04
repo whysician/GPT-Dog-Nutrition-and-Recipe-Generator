@@ -8,10 +8,18 @@
 import Foundation
 
 class DogViewModel: ObservableObject {
+    private var userDefaults = UserDefaults.standard
     @Published var dogs: [Dog] = []
 
+
     init() {
-        loadSampleDogs()
+        if let savedDogData = userDefaults.object(forKey: "dogs") as? Data {
+            do {
+                dogs = try JSONDecoder().decode([Dog].self, from: savedDogData)
+            } catch {
+                print("Failed to load saved dogs: \(error)")
+            }
+        }
     }
 
     func addDog(name: String, breed: String, ageYears: Int, ageMonths: Int, gender: String, conditions: [String]) {
@@ -25,6 +33,7 @@ class DogViewModel: ObservableObject {
         )
         DispatchQueue.main.async {
             self.dogs.append(newDog)
+            self.saveDogList()
             print("New pet added: \(newDog)")
         }
 
@@ -32,24 +41,28 @@ class DogViewModel: ObservableObject {
 
     func deleteDog(at offsets: IndexSet) {
         dogs.remove(atOffsets: offsets)
+        saveDogList()
     }
 
     func updateDog(_ dog: Dog) {
         if let index = dogs.firstIndex(where: { $0.id == dog.id }) {
             dogs[index] = dog
         }
+        saveDogList()
     }
 
     func addRecipe(_ recipe: Recipe, to dog: Dog) {
         if let index = dogs.firstIndex(where: { $0.id == dog.id }) {
             dogs[index].recipes.append(recipe)
         }
+        saveDogList()
     }
 
     func deleteRecipe(_ recipe: Recipe, from dog: Dog) {
         if let index = dogs.firstIndex(where: { $0.id == dog.id }) {
             dogs[index].recipes.removeAll { $0.id == recipe.id }
         }
+        saveDogList()
     }
 
     private func loadSampleDogs() {
@@ -65,5 +78,14 @@ class DogViewModel: ObservableObject {
         ]
 
         self.dogs = sampleDogs
+    }
+    
+    func saveDogList() {
+        do {
+            let encodedDogs = try JSONEncoder().encode(dogs)
+            userDefaults.set(encodedDogs, forKey: "dogs")
+        } catch {
+            print("Unable to save dogs: \(error)")
+        }
     }
 }
