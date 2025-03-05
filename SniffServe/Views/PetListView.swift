@@ -31,7 +31,7 @@ struct MainBodyView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 30) {
-                CircleImage(size: 120)
+                CircleImage(size: 110)
                     .padding(.top, 35)
 
                 Text("Your Dogs")
@@ -61,8 +61,9 @@ struct DogListView: View {
             }
             
             if dogViewModel.dogs.count == 0 {
-                Text("No dogs found")
+                Text("No dogs found\nClick + to start")
                     .font(.title)
+                    .padding(.top, 60)
             }
         }
     }
