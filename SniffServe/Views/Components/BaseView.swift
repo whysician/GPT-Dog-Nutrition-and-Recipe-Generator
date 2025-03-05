@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BaseView<Content: View, TopRightView: View>: View {
-    let screenTitle: String?
+    var screenTitle: String?
     let content: () -> Content
     
     let topLeftIcon: String?
@@ -68,36 +68,43 @@ struct BaseView<Content: View, TopRightView: View>: View {
                     content()
                 }
             }
-            // Create green sections at top and bottom of screen for the
-            // placement of icons and titles
+            // Green bar area at the top
             .safeAreaInset(edge: .top, spacing: 0) {
                 HStack {
-                    Button {
-                        topLeftAction()
-                    } label: {
-                        Image(systemName: topLeftIcon ?? "")
-                            .foregroundColor(.black)
-                            .font(.largeTitle)
+                    // Left button
+                    if let topLeftIcon = topLeftIcon {
+                        Button {
+                            topLeftAction()
+                        } label: {
+                            Image(systemName: topLeftIcon)
+                                .foregroundColor(.black)
+                                .font(.largeTitle)
+                        }
+                        .padding(.leading, 5.0)
+                    } else {
+                        Spacer()
                     }
-                    .padding(.leading, 5.0)
                     
-                    
-                    Spacer()
+                    // Title name
                     Text(screenTitle ?? "")
                         .font(.title)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .lineLimit(1)
                     
-                    Spacer()
-                    
-                    Button {
-                        topRightAction()
-                        showView.toggle()
-                    } label: {
-                        Image(systemName: topRightIcon ?? "")
-                            .foregroundColor(.black)
-                            .font(.largeTitle)
+                    // Right button
+                    if let topRightIcon = topRightIcon {
+                        Button {
+                            topRightAction()
+                            showView.toggle()
+                        } label: {
+                            Image(systemName: topRightIcon)
+                                .foregroundColor(.black)
+                                .font(.largeTitle)
+                        }
+                        .padding(.leading, 5.0)
+                    } else {
+                        Spacer()
                     }
-                    .padding(.leading, 5.0)
-
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: 70)
@@ -107,6 +114,7 @@ struct BaseView<Content: View, TopRightView: View>: View {
                 }
             }
             
+            // Green bar area at the bottom
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 HStack(spacing: 120) {
                     
@@ -133,8 +141,7 @@ struct BaseView<Content: View, TopRightView: View>: View {
                     }
                 }
                 .padding()
-                .frame(maxWidth: .infinity, maxHeight: 70
-                )
+                .frame(maxWidth: .infinity, maxHeight: 70)
                 .background(.green)
             }
         }

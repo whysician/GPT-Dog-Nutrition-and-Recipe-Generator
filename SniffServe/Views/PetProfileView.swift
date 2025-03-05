@@ -47,16 +47,10 @@ struct PetView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                if UIImage(named: "Doge") != nil {
-                    CircleImage(imageName: "Doge", size: 200)
-                        .padding(.top, 35)
-                        .padding(.bottom, 30)
-                } else {
-                    CircleImage(size: 100)
-                        .padding(.top, 35)
-                        .padding(.bottom, 30)
-                }
-
+                CircleImage(size: 110)
+                    .padding(.top, 35)
+                    .padding(.bottom, 15)
+                
                 VStack {
                     Text(dog.name)
                         .font(.system(size: 45))
