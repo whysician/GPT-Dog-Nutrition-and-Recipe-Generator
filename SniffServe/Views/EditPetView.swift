@@ -14,7 +14,7 @@ struct EditPetView: View {
     @State private var petBreed: String = ""
     @State private var petGender: String = ""
     @State private var petConditions: String = ""
-    @State private var navigateToList = false
+    @State private var navigateToProfile = false
     @State private var petImage: UIImage? = nil
 
     init(dog: Binding<Dog>) {
@@ -49,20 +49,21 @@ struct EditPetView: View {
                         viewModel.saveDogList()
                         
                         print("Pet info updated: \(petName), Age: \(petAge), Breed: \(petBreed), Gender: \(petGender), Conditions: \(viewModel.dogs[index].chronic_conditions)")
-                        navigateToList = true
+                        navigateToProfile = true
                     }
                 },
                 onCancel: {
                     print("Edit pet canceled!")
-                    navigateToList = true
+                    navigateToProfile = true
                 },
                 formTitle: "Edit Pet Profile",
                 petPhoto: "edit photo",
                 petPhotoOpacity: 0.7,
                 conditionsPlaceholder: "Input a condition and press enter key to add a new one, or separate conditions."
             )
-            .navigationDestination(isPresented: $navigateToList) {
-                PetListView().environmentObject(viewModel)
+            .navigationDestination(isPresented: $navigateToProfile) {
+                PetProfileView(dog: dog)
+                    .environmentObject(viewModel)
             }
         }
         .onAppear {
