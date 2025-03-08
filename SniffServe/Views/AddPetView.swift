@@ -2,7 +2,7 @@
 //  AddPetView.swift
 //  SniffServe
 //
-//  Used PetInputFormView
+//  Purpose: Allows users to create a new pet profile using the reusable PetInputFormView.
 
 import SwiftUI
 
@@ -28,11 +28,13 @@ struct AddPetView: View {
                 petImage: $petImage,
                 onSave: {
                     let ageYears = Int(petAge) ?? 0
+                    // Converts comma-separated conditions into an array
                     let conditionsList = petConditions
                         .split(separator: ",")
                         .map { $0.trimmingCharacters(in: .whitespaces) }
                         .filter { !$0.isEmpty }
                     
+                    // Calls 'addDog()' method in DogViewModel to store the new pet
                     dogViewModel.addDog(
                         name: petName,
                         breed: petBreed,
@@ -49,6 +51,7 @@ struct AddPetView: View {
                     print("Add pet canceled!")
                     navigateToList = true
                 },
+                // Form display properties
                 formTitle: "Create Pet Profile",
                 petPhoto: "add photo",
                 petPhotoOpacity: 0.7,

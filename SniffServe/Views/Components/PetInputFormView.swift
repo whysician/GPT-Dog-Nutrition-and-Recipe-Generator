@@ -37,13 +37,14 @@ struct PetInputFormView: View {
         ) {
             VStack(spacing: 10) {
                 
-                // Pet picture section
+                // Pet image picker section
                 Button(action: { showImagePicker.toggle() }) {
                     ZStack {
                         Circle()
                             .fill(Color(.systemTeal).opacity(0.3))
                             .frame(width: 100, height: 100)
 
+                        // Display selected image if available
                         if let petImage = petImage {
                             Image(uiImage: petImage)
                                 .resizable()
@@ -52,6 +53,7 @@ struct PetInputFormView: View {
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                         } else {
+                            // Default placeholder SF symbol image
                             Image(systemName: "photo.on.rectangle")
                                 .resizable()
                                 .scaledToFit()
@@ -68,7 +70,7 @@ struct PetInputFormView: View {
                     .foregroundColor(.black)
                     .opacity(petPhotoOpacity)
 
-                // Input fields section
+                // Input form fields section
                 VStack(alignment: .leading, spacing: 16) {
                     CustomTextField(label: "Name", text: $petName, placeholder: "e.g. Doge")
                     CustomTextField(label: "Age", text: $petAge, keyboardType: .numberPad, placeholder: "e.g. 3")
@@ -82,7 +84,7 @@ struct PetInputFormView: View {
     }
 }
 
-// Single-line text field
+// Single-line input field with a label
 struct CustomTextField: View {
     var label: String
     @Binding var text: String
@@ -92,11 +94,13 @@ struct CustomTextField: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
+            // Field label
             Text(label)
                 .frame(width: 60, alignment: .leading)
                 .font(.body)
                 .foregroundColor(.black)
 
+            // Input field
             TextField(placeholder, text: $text)
                 .keyboardType(keyboardType)
                 .padding()
@@ -108,7 +112,7 @@ struct CustomTextField: View {
     }
 }
 
-// Multiline text field
+// Multiline text input field
 struct CustomMultilineTextField: View {
     var label: String
     @Binding var text: String
@@ -117,11 +121,13 @@ struct CustomMultilineTextField: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
+            // Field label
             Text(label)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.body)
                 .foregroundColor(.black)
             
+            // Text editor with placeholder functionality 
             ZStack(alignment: .topLeading) {
                 if text.isEmpty {
                     Text(placeholder)
