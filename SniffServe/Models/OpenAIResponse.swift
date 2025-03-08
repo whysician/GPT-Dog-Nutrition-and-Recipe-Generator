@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Represents a response from the OpenAI API.
 struct OpenAIResponse: Codable {
     struct Choice: Codable {
         let message: ChatMessage

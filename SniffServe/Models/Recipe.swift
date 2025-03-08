@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Represents a dog recipe.
 struct Recipe: Identifiable, Codable, Hashable {
     var id = UUID()
     var title: String

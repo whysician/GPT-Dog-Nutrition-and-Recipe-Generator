@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Displays a list of recipes associated with a specific dog.
 struct RecipeListView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dogViewModel: DogViewModel
@@ -29,6 +30,7 @@ struct RecipeListView: View {
                             .font(.headline)
                             .padding()
                     } else {
+                        // Loop through each recipe and display a card with delete functionality
                         ForEach(dogRecipes, id: \.id) { recipe in
                             NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                                 RecipeCardView(recipe: recipe, deleteAction: {
