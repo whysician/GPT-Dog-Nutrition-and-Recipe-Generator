@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// A view for chatting with the AI to generate responses and dog recipes
 struct ChatView: View {
     @StateObject private var viewModel = OpenAIViewModel()
     @EnvironmentObject var dogViewModel: DogViewModel
@@ -35,6 +36,7 @@ struct ChatView: View {
             .padding()
             .background(Color.green)
 
+            // Chat message list
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(viewModel.messages) { message in
@@ -44,6 +46,7 @@ struct ChatView: View {
             }
             .padding()
 
+            // Message input field and send button
             HStack {
                 TextField("Type your message here...", text: $viewModel.userInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -61,6 +64,7 @@ struct ChatView: View {
 
             Spacer()
 
+            // Buttons for generating and saving recipes
             VStack(spacing: 20) {
                 if viewModel.showSaveRecipeOption, let recipe = viewModel.lastGeneratedRecipe {
                     Button("Save Recipe") {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Displays detailed information about a selected recipe.
 struct RecipeDetailView: View {
     var recipe: Recipe
 

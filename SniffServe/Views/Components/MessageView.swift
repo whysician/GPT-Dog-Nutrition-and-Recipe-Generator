@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Displays a single chat message, styled differently based on the sender.
 struct MessageView: View {
     var message: ChatMessage
 

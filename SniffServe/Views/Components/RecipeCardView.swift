@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Displays a simple card for a recipe with a title and delete button.
 struct RecipeCardView: View {
     var recipe: Recipe
     var deleteAction: () -> Void

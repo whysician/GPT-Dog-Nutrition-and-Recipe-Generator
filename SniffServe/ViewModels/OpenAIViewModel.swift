@@ -14,6 +14,7 @@ class OpenAIViewModel: ObservableObject {
     @Published var lastGeneratedRecipe: Recipe?
     @Published var showSaveRecipeOption = false
 
+    // Sends the user's input as a message and appends the AI's response to the chat history.
     func sendMessage() {
         guard !userInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
 
@@ -30,6 +31,7 @@ class OpenAIViewModel: ObservableObject {
         }
     }
 
+    // Requests OpenAI to generate a recipe based on the dog's details and saves the result.
     func generateRecipeForDog(dog: Dog) {
         let dogData = """
         Generate a detailed recipe with a unique title for a dog with these details:
@@ -53,13 +55,14 @@ class OpenAIViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if let response = response {
                     self?.messages.append(ChatMessage(role: "assistant", content: response))
-                    self?.lastGeneratedRecipe = self?.parseRecipeFromResponse(response)
+                    self?.lastGeneratedRecipe = self?.parseRecipeFromResponse(response) // Extract recipe details
                     self?.showSaveRecipeOption = self?.lastGeneratedRecipe != nil
                 }
             }
         }
     }
 
+    // Sends the dog's details to OpenAI as context for the conversation.
     func sendDogStats(dog: Dog) {
         let dogStatsMessage = """
         The user has a dog with these details:
@@ -84,6 +87,7 @@ class OpenAIViewModel: ObservableObject {
         }
     }
 
+    // Sends the chat history to OpenAI and handles the API response.
     private func sendToOpenAI(_ chatHistory: [ChatMessage], completion: @escaping (String?) -> Void) {
         let requestBody = ChatRequest(model: "gpt-3.5-turbo", messages: chatHistory)
 
@@ -125,6 +129,7 @@ class OpenAIViewModel: ObservableObject {
         task.resume()
     }
 
+    // Parses a recipe from the AI's response string and returns a Recipe object.
     private func parseRecipeFromResponse(_ response: String) -> Recipe? {
         let lines = response.split(separator: "\n").map(String.init)
         guard let titleIndex = lines.firstIndex(where: { $0.contains("Title:") }) else { return nil }
@@ -135,6 +140,6 @@ class OpenAIViewModel: ObservableObject {
         let ingredients = lines[(ingredientsIndex + 1)..<instructionsIndex].map { $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "- ", with: "") }
         let instructions = lines[(instructionsIndex + 1)...].map { $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "- ", with: "") }
 
-        return Recipe(title: title, ingredients: ingredients, instructions: instructions)
+        return Recipe(title: title, ingredients: ingredients, instructions: instructions) // Returns parsed recipe object
     }
 }
