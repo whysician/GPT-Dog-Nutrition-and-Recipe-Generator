@@ -2,6 +2,7 @@
 //  EditPetView.swift
 //  SniffServe
 //
+// Purpose: Allows users to edit an existing pet's details using the resuable PetInputInformView.
 
 import SwiftUI
 
@@ -17,6 +18,7 @@ struct EditPetView: View {
     @State private var navigateToProfile = false
     @State private var petImage: UIImage? = nil
 
+    // Pre-fills the form with the pet's existing details
     init(dog: Binding<Dog>) {
         self._dog = dog
         _petName = State(initialValue: dog.wrappedValue.name)
@@ -24,8 +26,8 @@ struct EditPetView: View {
         _petBreed = State(initialValue: dog.wrappedValue.breed)
         _petGender = State(initialValue: dog.wrappedValue.gender)
         _petConditions = State(initialValue: dog.wrappedValue.chronic_conditions
-            .map {"• " + $0}
-            .joined(separator: "\n"))
+            .map {"• " + $0}    // Adds bullet points to each condition
+            .joined(separator: "\n"))   // Joins them into a multi-line string by new line separator
     }
 
     var body: some View {
@@ -43,6 +45,7 @@ struct EditPetView: View {
                         viewModel.dogs[index].age_years = Int(petAge) ?? 0
                         viewModel.dogs[index].breed = petBreed
                         viewModel.dogs[index].gender = petGender
+                        // Converts multi-line conditions back to an array
                         viewModel.dogs[index].chronic_conditions = petConditions
                             .split(separator: "\n")
                             .map { $0.replacingOccurrences(of: "• ", with: "").trimmingCharacters(in: .whitespaces) }
@@ -56,6 +59,7 @@ struct EditPetView: View {
                     print("Edit pet canceled!")
                     navigateToProfile = true
                 },
+                // Form display properties
                 formTitle: "Edit Pet Profile",
                 petPhoto: "edit photo",
                 petPhotoOpacity: 0.7,
@@ -66,6 +70,7 @@ struct EditPetView: View {
                     .environmentObject(viewModel)
             }
         }
+        // On appear, update the input fields with the latest pet data
         .onAppear {
             petName = dog.name
             petAge = "\(dog.age_years)"
