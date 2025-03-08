@@ -18,10 +18,6 @@ class OpenAIViewModel: ObservableObject {
     @Published var showSaveRecipeOption = false
     @Published var apiKey: String = "default_key"
     
-    init() {
-        fetchAPIKey {}
-    }
-    
     func fetchAPIKey(completion: @escaping () -> Void) {
         let database = container.publicCloudDatabase
         let recordID = CKRecord.ID(recordName: "4329822D-1C7E-480F-B7BF-EBAA88D1B692")
@@ -32,7 +28,6 @@ class OpenAIViewModel: ObservableObject {
                     print("Failed to fetch API Key: \(error.localizedDescription)")
                 } else if let record = record, let key = record["openai_api_key"] as? String {
                     self.apiKey = key.trimmingCharacters(in: .whitespacesAndNewlines)
-                    print("API Key fetched successfully: \(self.apiKey)")
                     completion()    // Ensures next step only runs after API key is set
                 } else {
                     print("API Key not found in record")
@@ -48,16 +43,12 @@ class OpenAIViewModel: ObservableObject {
         let userMessage = ChatMessage(role: "user", content: userInput)
         messages.append(userMessage)
 
-        // Fetch API Key and only then send the request
-        fetchAPIKey {
-            print("API Key is now ready, sending message...")
-            self.sendToOpenAI(self.messages) { [weak self] response in
-                DispatchQueue.main.async {
-                    if let response = response {
-                        self?.messages.append(ChatMessage(role: "assistant", content: response))
-                    }
-                    self?.userInput = ""
+        sendToOpenAI(messages) { [weak self] response in
+            DispatchQueue.main.async {
+                if let response = response {
+                    self?.messages.append(ChatMessage(role: "assistant", content: response))
                 }
+                self?.userInput = ""
             }
         }
     }
@@ -133,8 +124,6 @@ class OpenAIViewModel: ObservableObject {
             request.httpMethod = "POST"
             request.httpBody = jsonData
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            print("Using API Key: \(self.apiKey)")
             request.addValue("Bearer \(self.apiKey)", forHTTPHeaderField: "Authorization")
 
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
