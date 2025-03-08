@@ -6,13 +6,40 @@
 //
 
 import Foundation
+import CloudKit
 
 @MainActor
 class OpenAIViewModel: ObservableObject {
+    private var container = CKContainer.default()
+    
     @Published var messages: [ChatMessage] = []
     @Published var userInput: String = ""
     @Published var lastGeneratedRecipe: Recipe?
     @Published var showSaveRecipeOption = false
+    @Published var apiKey: String = "default_key"
+    
+    init() {
+        fetchAPIKey {}
+    }
+    
+    func fetchAPIKey(completion: @escaping () -> Void) {
+        let database = container.publicCloudDatabase
+        let recordID = CKRecord.ID(recordName: "4329822D-1C7E-480F-B7BF-EBAA88D1B692")
+
+        database.fetch(withRecordID: recordID) { record, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Failed to fetch API Key: \(error.localizedDescription)")
+                } else if let record = record, let key = record["openai_api_key"] as? String {
+                    self.apiKey = key.trimmingCharacters(in: .whitespacesAndNewlines)
+                    print("API Key fetched successfully: \(self.apiKey)")
+                    completion()    // Ensures next step only runs after API key is set
+                } else {
+                    print("API Key not found in record")
+                }
+            }
+        }
+    }
 
     // Sends the user's input as a message and appends the AI's response to the chat history.
     func sendMessage() {
@@ -21,12 +48,16 @@ class OpenAIViewModel: ObservableObject {
         let userMessage = ChatMessage(role: "user", content: userInput)
         messages.append(userMessage)
 
-        sendToOpenAI(messages) { [weak self] response in
-            DispatchQueue.main.async {
-                if let response = response {
-                    self?.messages.append(ChatMessage(role: "assistant", content: response))
+        // Fetch API Key and only then send the request
+        fetchAPIKey {
+            print("API Key is now ready, sending message...")
+            self.sendToOpenAI(self.messages) { [weak self] response in
+                DispatchQueue.main.async {
+                    if let response = response {
+                        self?.messages.append(ChatMessage(role: "assistant", content: response))
+                    }
+                    self?.userInput = ""
                 }
-                self?.userInput = ""
             }
         }
     }
@@ -55,7 +86,7 @@ class OpenAIViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if let response = response {
                     self?.messages.append(ChatMessage(role: "assistant", content: response))
-                    self?.lastGeneratedRecipe = self?.parseRecipeFromResponse(response) // Extract recipe details
+                    self?.lastGeneratedRecipe = self?.parseRecipeFromResponse(response)
                     self?.showSaveRecipeOption = self?.lastGeneratedRecipe != nil
                 }
             }
@@ -89,44 +120,47 @@ class OpenAIViewModel: ObservableObject {
 
     // Sends the chat history to OpenAI and handles the API response.
     private func sendToOpenAI(_ chatHistory: [ChatMessage], completion: @escaping (String?) -> Void) {
-        let requestBody = ChatRequest(model: "gpt-3.5-turbo", messages: chatHistory)
+        fetchAPIKey {       // Fetch API key before sending the request
+            let requestBody = ChatRequest(model: "gpt-3.5-turbo", messages: chatHistory)
 
-        guard let jsonData = try? JSONEncoder().encode(requestBody) else {
-            print("Failed to encode request body")
-            completion(nil)
-            return
-        }
-
-        var request = URLRequest(url: URL(string: "https://api.openai.com/v1/chat/completions")!)
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(ProcessInfo.processInfo.environment["OPENAI_KEY"] ?? "defaultKey")", forHTTPHeaderField: "Authorization")
-
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            if let error = error {
-                print("Request error: \(error.localizedDescription)")
+            guard let jsonData = try? JSONEncoder().encode(requestBody) else {
+                print("Failed to encode request body")
                 completion(nil)
                 return
             }
 
-            guard let data = data else {
-                print("No response data received")
-                completion(nil)
-                return
-            }
+            var request = URLRequest(url: URL(string: "https://api.openai.com/v1/chat/completions")!)
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-            do {
-                let decodedResponse = try JSONDecoder().decode(OpenAIResponse.self, from: data)
-                completion(decodedResponse.choices.first?.message.content)
-            } catch {
-                print("Failed to decode response: \(error)")
-                print("Response Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
-                completion(nil)
+            print("Using API Key: \(self.apiKey)")
+            request.addValue("Bearer \(self.apiKey)", forHTTPHeaderField: "Authorization")
+
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                if let error = error {
+                    print("Request error: \(error.localizedDescription)")
+                    completion(nil)
+                    return
+                }
+
+                guard let data = data else {
+                    print("No response data received")
+                    completion(nil)
+                    return
+                }
+
+                do {
+                    let decodedResponse = try JSONDecoder().decode(OpenAIResponse.self, from: data)
+                    completion(decodedResponse.choices.first?.message.content)
+                } catch {
+                    print("Failed to decode response: \(error)")
+                    print("Response Data: \(String(data: data, encoding: .utf8) ?? "N/A")")
+                    completion(nil)
+                }
             }
+            task.resume()
         }
-
-        task.resume()
     }
 
     // Parses a recipe from the AI's response string and returns a Recipe object.
@@ -140,6 +174,6 @@ class OpenAIViewModel: ObservableObject {
         let ingredients = lines[(ingredientsIndex + 1)..<instructionsIndex].map { $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "- ", with: "") }
         let instructions = lines[(instructionsIndex + 1)...].map { $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "- ", with: "") }
 
-        return Recipe(title: title, ingredients: ingredients, instructions: instructions) // Returns parsed recipe object
+        return Recipe(title: title, ingredients: ingredients, instructions: instructions)
     }
 }
