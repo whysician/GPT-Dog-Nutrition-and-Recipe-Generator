@@ -8,7 +8,6 @@
 import Foundation
 
 // Represents a request sent to the OpenAI API.
-
 struct ChatRequest: Codable {
     let model: String
     let messages: [ChatMessage]
