@@ -29,6 +29,7 @@ struct PetListView: View {
 
 struct MainBodyView: View {
     var body: some View {
+        // Creates static image of dog icon and the title of the list
         ScrollView {
             LazyVStack(spacing: 30) {
                 CircleImage(size: 110)
@@ -48,10 +49,12 @@ struct DogListView: View {
     @EnvironmentObject var dogViewModel: DogViewModel
 
     var body: some View {
+        // Creates the actual list of dog that can be selected
         VStack {
             ForEach(dogViewModel.dogs) { dog in
                 NavigationLink(destination: PetProfileView(dog: dog)) {
                     DogCardView(dog: dog, deleteAction: {
+                        // Determines the index of the proper dog to delete within the dog list of the viewmodel
                         if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
                             dogViewModel.deleteDog(at: IndexSet(integer: index))
                         }
@@ -60,6 +63,7 @@ struct DogListView: View {
                 .padding(.bottom, 10)
             }
             
+            // Message to show when no dogs are in the list
             if dogViewModel.dogs.count == 0 {
                 Text("No dogs found\nClick + to start")
                     .font(.title)

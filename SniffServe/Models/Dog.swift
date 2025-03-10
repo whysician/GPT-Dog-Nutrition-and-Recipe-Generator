@@ -8,6 +8,7 @@
 import Foundation
 
 struct Dog: Identifiable, Hashable, Codable {
+    // Represents the dog of a user
     var id = UUID()
     var name: String
     var breed: String

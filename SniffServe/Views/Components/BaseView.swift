@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct BaseView<Content: View, TopRightView: View>: View {
+    // Create the template/basis for all the screen of the app
+    // Can be used to determine icons (top left, top right, bottom left, bottom right) and their actions for each screen
+    
     var screenTitle: String?
     let content: () -> Content
     
