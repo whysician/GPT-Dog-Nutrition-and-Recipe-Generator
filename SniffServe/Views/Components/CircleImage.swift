@@ -12,6 +12,7 @@ struct CircleImage: View {
     var imageName: String = "dog.circle.fill"
 
     var body: some View {
+        // Create the static dog circle image for each card shown in PetListView
         Image(systemName: imageName)
             .resizable()
             .scaledToFit()

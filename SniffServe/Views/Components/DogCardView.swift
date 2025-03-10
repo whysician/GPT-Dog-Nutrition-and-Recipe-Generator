@@ -12,6 +12,7 @@ struct DogCardView: View {
     var deleteAction: () -> Void
     
     var body: some View {
+        // Creates the cards that are shown in the PetListView
         HStack {
             CircleImage(size: 50)
                 .foregroundStyle(.black)

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PetProfileView: View {
+    // Creates the pet profile screen for a specific dog
+    
     @EnvironmentObject var dogViewModel: DogViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showingRecipes = false
@@ -29,6 +31,7 @@ struct PetProfileView: View {
         ) {
             PetView(dog: dog)
         }
+        // Helps to ensure proper navigation for the app
         .navigationDestination(isPresented: $showingRecipes) {
             if let index = dogViewModel.dogs.firstIndex(where: { $0.id == dog.id }) {
                 RecipeListView(dog: dogViewModel.dogs[index])
@@ -56,6 +59,7 @@ struct PetView: View {
 
     var body: some View {
         ScrollView {
+            // Creates the static image of the dog icon and the dog's name and breed
             LazyVStack(spacing: 10) {
                 CircleImage(size: 110)
                     .padding(.top, 35)
@@ -72,6 +76,7 @@ struct PetView: View {
                 }
                 .offset(y: -20)
 
+                // Creates the rectangles and the information containing the age and gender of the dog
                 HStack {
                     ZStack {
                         Rectangle()
@@ -110,6 +115,7 @@ struct PetView: View {
 
                 Spacer()
 
+                // Creates the rectangle and information showing chronic conditions of the dog
                 VStack(spacing: 5.0) {
                     if dog.chronic_conditions.isEmpty {
                         Text("Chronic Conditions: None")

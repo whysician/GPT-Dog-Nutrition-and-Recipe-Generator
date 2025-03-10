@@ -30,6 +30,7 @@ struct LaunchView: View {
             
             ZStack {
                 if showSniff {
+                    // Controls the animation of the SniffServe letters
                     HStack(spacing: 0) {
                         ForEach(sniffServe.indices, id: \.self) { index in
                             Text(sniffServe[index])
@@ -47,6 +48,7 @@ struct LaunchView: View {
         .onAppear {
             showSniff.toggle()
         }
+        // Controls maximum time that the launch screen will stay up
         .onReceive(timer, perform: { _ in
             withAnimation(.spring()) {
                 let lastIndex = sniffServe.count - 1
